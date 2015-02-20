@@ -1,0 +1,57 @@
+		<script type ="text/javascript">
+setInterval( function(){
+
+			$.ajax({
+            url: '/get_my_unit',
+            type: 'POST',
+			dataType : 'json',
+            success: function(response) 
+			{
+				showUnit('#lc', response);
+            },
+            error: function(error) 
+			{
+                
+
+            }
+        });
+		},1000);
+		</script>
+		{% block the_scripts %}
+<script type ="text/javascript">
+
+		jQuery(document).ready(function () {
+		alert("bang");
+		
+		$("#patient").click( function(){
+			setPatientsTable("#test");
+			alert("bang");
+		
+		});
+		
+/*
+		setInterval( function(){
+				alert("bang");
+			$.ajax({
+            url: '/get_my_unit',
+            type: 'POST',
+			dataType : 'json',
+            success: function(response) 
+			{
+				alert(response.name);
+				showUnit('#lc', response);
+            },
+            error: function(error) 
+			{
+                alert(error+"Error");
+
+            }
+        });
+		},500);
+
+	*/	
+	});
+			
+
+</script>
+		{% endblock%}

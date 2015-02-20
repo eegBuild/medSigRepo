@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" >
+    <title>{{the_title}}</title>
+    <meta name="viewport" content="width=device-width" >
+    <link type="text/css" href="../static/Content/wordplex.css" rel="stylesheet" >
+	<link type="text/css" href="../static/Content/formx.css" rel="stylesheet" >
+	<link type="text/css" href="../static/Content/tableStyler.css" rel="stylesheet" >
+	<script type ="text/javascript" src="../static/Script/jquery-1.8.2.js"></script>
+	<script type ="text/javascript" src="../static/Script/jquery.tablesorter.min.js"></script>
+	<script type ="text/javascript" src="../static/Script/wordplexScripts.js"></script>
+	<script type ="text/javascript">
+jQuery(document).ready(function () {
+
+
+});
+			
+
+</script>
+
+</head>
+<body id = "mainBody">
+	<div class = "container">
+		
+		<div class="float-left" id = 'fixedHead'>
+			<div class="site-title">
+				<img style = 'float:left' src="../static/Images/wordPlex2.png" >
+				<div id = 'welcome'></div>
+			</div>
+		</div>
+			
+		<div id="primary">
+		<div class = "center" >
+<div id ='x'>
+				
+
+<table class="tablesorter" cellspacing="1">             
+    <thead>
+        <tr> 
+            <th>first name</th> 
+            <th>last name</th> 
+            <th>age</th> 
+            <th>total</th> 
+            <th>discount</th> 
+            <th>date</th> 
+        </tr> 
+    </thead> 
+    <tbody> 
+        <tr> 
+            <td>peter</td> 
+            <td>parker</td> 
+            <td>28</td> 
+            <td>$9.99</td> 
+            <td>20%</td> 
+            <td>jul 6, 2006 8:14 am</td> 
+        </tr> 
+        <tr> 
+            <td>john</td> 
+            <td>hood</td> 
+            <td>33</td> 
+            <td>$19.99</td> 
+            <td>25%</td> 
+            <td>dec 10, 2002 5:14 am</td> 
+        </tr> 
+        <tr> 
+            <td>clark</td> 
+            <td>kent</td> 
+            <td>18</td> 
+            <td>$15.89</td> 
+            <td>44%</td> 
+            <td>jan 12, 2003 11:14 am</td> 
+        </tr> 
+        <tr> 
+            <td>bruce</td> 
+            <td>almighty</td> 
+            <td>45</td> 
+            <td>$153.19</td> 
+            <td>44%</td> 
+            <td>jan 18, 2001 9:12 am</td> 
+        </tr> 
+        <tr> 
+            <td>bruce</td> 
+            <td>evans</td> 
+            <td>22</td> 
+            <td>$13.19</td> 
+            <td>11%</td> 
+            <td>jan 18, 2007 9:12 am</td> 
+        </tr> 
+    </tbody> 
+</table>
+
+
+			</div>
+		</div>
+		</div>
+    
+		<div id="content">
+			{% block the_game %}
+			{% endblock%}
+		</div>
+    
+		<div id="secondary">
+			{% block the_rules %}
+			{% endblock%}
+		</div>
+		
+		{% block the_scripts %}
+		{% endblock%}
+	  
+		<footer>
+			<div class="content-wrapper">
+				<div class="footer-left">
+					<p style = 'position: absolute; bottom: 0; left: 0; padding-left:10px;'>&copy; 2014 - R Tapley C00162379</p>
+				</div>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

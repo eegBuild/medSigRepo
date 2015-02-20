@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block the_center %}
+
+
+{% endblock %}
+
+{% block the_left %}
+
+{% endblock%}
+
+
+{% block the_scripts %}
+<script type ="text/javascript">
+jQuery(document).ready(function () {
+
+		$( "#ip_form" ).click(function() {
+
+		$.ajax({
+            url: '/get_my_ip',
+            type: 'POST',
+			dataType : 'json',
+            success: function(response) 
+			{
+				showIp('#ip', response);
+            },
+            error: function(error) 
+			{
+                
+
+            }
+        });
+	});
+
+});
+			
+
+</script>
+{% endblock%}

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block the_chart %}
+<div id="container" style="height: 500px; min-width: 310px"></div>
+{% endblock%}
+
+
+{% block the_scripts %}
+<script type ="text/javascript">
+var chart; // global
+theme = 'dark-unica';
+Highcharts.setOptions(theme );
+
+jQuery(document).ready(function () {
+
+$(function () {
+    $.getJSON('static/jsonFile.json', function (data) {
+
+
+
+        // Create a timer
+        var start = +new Date();
+
+        // Create the chart
+        $('#container').highcharts('StockChart', {
+            chart: {
+                events: {
+                    load: function () {
+                        this.setTitle(null, {
+                            text: 'Built chart in ' + (new Date() - start) + 'ms'
+                        });
+                    }
+                },
+                zoomType: 'x'
+            },
+
+            rangeSelector: {
+                
+                buttons: [{
+                    type: 'second',
+                    count: 1,
+                    text: '1sec'
+                }, {
+                    type: 'second',
+                    count: 5,
+                    text: '5sec'
+                }, {
+                    type: 'second',
+                    count: 10,
+                    text: '10sec'
+                }, {
+                    type: 'second',
+                    count: 30,
+                    text: '30sec'
+                }, {
+                    type: 'minute',
+                    count: 1,
+                    text: '1min'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+                selected: 1
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Mv'
+                }
+            },
+
+            title: {
+                text: 'ECG Test Data From Galileo '
+            },
+
+            subtitle: {
+                text: 'Test Data From Galileo' // dummy text to reserve space for dynamic subtitle
+            },
+
+            series: [{
+                name: 'Time',
+				data:data,
+                pointInterval:1,
+                tooltip: {
+                    valueDecimals: 3,
+                    valueSuffix: 'Mv'
+                }
+            }]
+
+        });
+    });
+});
+
+/*	
+
+    $.ajax({
+            url: '/get_data',
+            type: 'POST',
+			dataType : 'json',
+            success: function(response) 
+			{
+				var obj = response;
+				var series = chart.series[0],
+                shift = series.data.length > 100; // shift if the series is 
+                                                 // longer than 100
+				var x = parseFloat(obj[0]);
+				var y = parseFloat(obj[1]);
+            // add the point
+            //chart.series[0].addPoint([x], true, shift);
+			chart.options.series[0].setData(obj);
+            
+            // call it again after one second
+            setTimeout(requestData, 1); 
+			
+            },
+        cache: false
+    });
+
+
+});
+*/
+});
+
+
+/**
+ * Request data from the server, add it to the graph and set a timeout 
+ * to request again
+ */
+
+
+
+</script>
+{% endblock %}
+

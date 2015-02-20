@@ -1,0 +1,196 @@
+@font-face {
+  font-family: 'icons';
+  src: url('icons.eot');
+  src: url('icons.eot#iefix') format('embedded-opentype'),
+       url('icons.woff') format('woff'),
+       url('icons.ttf') format('truetype'),
+       url('icons.svg#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.form-blue {
+    font-size: 1em;
+    line-height: 1.231;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.65);
+	margin: 0px auto;
+    background-color: white;
+    font-size: 12px;
+    font-family: Arial,Helvetica,sans-serif;
+    color: #34495E;
+    max-width: 300px;
+    min-width: 150px;
+}
+
+.form-blue div.title {
+    
+
+background: rgba(0,165,81,1);
+background: -moz-linear-gradient(left, rgba(0,165,81,1) 0%, rgba(0,125,61,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,165,81,1)), color-stop(100%, rgba(0,125,61,1)));
+background: -webkit-linear-gradient(left, rgba(0,165,81,1) 0%, rgba(0,125,61,1) 100%);
+background: -o-linear-gradient(left, rgba(0,165,81,1) 0%, rgba(0,125,61,1) 100%);
+background: -ms-linear-gradient(left, rgba(0,165,81,1) 0%, rgba(0,125,61,1) 100%);
+background: linear-gradient(to right, rgba(0,165,81,1) 0%, rgba(0,125,61,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80b7ed', endColorstr='#347adb', GradientType=1 );
+
+
+    border-top: 1px solid #007d3d;
+    border-bottom: 2px solid #007d3d;
+	border-radius: 5px 5px 0px 0px;
+}
+
+
+
+.form-blue div.submit, .form-blue div.title {
+    margin: 0px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.form-blue > div, .form-blue > .title {
+    margin: 8px;
+}
+
+.form-blue div, .form-blue span, .form-blue label, .form-blue input, .form-blue textarea, .form-blue select, .form-blue button, .form-blue ul, .form-blue li, .form-blue a {
+    color: inherit;
+    font-family: inherit;
+}
+
+.form-blue div.title h2 {
+    margin-left: 27px;
+}
+.form-blue > div {
+    position: relative;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.form-blue > div, .form-blue > .title {
+    margin: 8px;
+}
+
+.form-blue .large{
+  width: 270px;
+  *width: 94%;
+}
+
+.form-blue h2 {
+    margin: 0.2em 0px;
+    font-size: 1.5em;
+    font-weight: 300;
+    color: white;
+}
+
+.form-blue .item-cont, .form-blue .element-address .country, .form-blue .element-name .nameFirst, .form-blue .element-name .nameLast, .form-blue .element-address .addr1, .form-blue .element-address .addr2, .form-blue .element-address .city, .form-blue .element-address .state, .form-blue .element-address .zip {
+    position: relative;
+	background-color: #F3F5FA;
+}
+
+.form-blue .element-text {
+     background-color: #F3F5FA;
+}
+
+.form-blue .element-address input[type="text"], .form-blue .element-name input[type="text"], .form-blue .element-file .file_text, .form-blue textarea {
+    width: 100%;
+}
+.form-blue input[type="text"], .form-blue input[type="password"], .form-blue input[type="email"], .form-blue input[type="url"], .form-blue input[type="date"], .form-blue input[type="number"], .form-blue input[type="tel"], .form-blue textarea, .form-blue .element-file .file_text, .form-blue select {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #BDC3C7;
+    transition: border-color 0.5s ease-in-out 0s;
+    border-radius: 3px;
+    padding: 5px 5px 9px 2.3em;
+    outline: medium none;
+    box-sizing: border-box;
+    -moz-appearance: none;
+    font-size: 1em;
+}
+
+.form-blue div.submit {
+    vertical-align: middle;
+    text-align: right;
+    border-top: 2px solid #D6DBDF;
+    background-color: #F3F5FA;
+}
+.form-blue div.submit, .form-blue div.title {
+    margin: 0px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.form-blue input[type="submit"], .form-blue input[type="button"] {
+    background-color: #007d3d;
+}
+.form-blue input[type="submit"], .form-blue input[type="button"] {
+    text-align: center;
+    opacity: 1;
+    color: white;
+    border: medium none;
+    right: 20px;
+    margin-right: 27px;
+    padding: 11px 41px;
+	outline: medium none;
+    font-size: 1.2em;
+}
+.form-blue input[type="button"], .form-blue input[type="submit"] {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 1px;
+    color: white;
+    text-align: left;
+    vertical-align: middle;
+    cursor: pointer;
+    background: none repeat scroll 0% 0% white;
+    -moz-appearance: none;
+    border: 2px solid #BDC3C7;
+    transition: all 0.25s ease-in-out 0s;
+    border-radius: 3px;
+    box-shadow: 0px -0.3em 0px rgba(0, 0, 0, 0.2) inset;
+}
+
+.form-blue input[type=submit], .form-blue input[type="button"]{
+  background-color: #007d3d;
+}
+
+.form-blue input[type=submit]:hover, .form-blue input[type="button"]:hover{
+  background-color: #34C97E;
+}
+.form-blue input[type=submit]:active, .form-blue input[type="button"]:active{
+  background-color: #00592c;
+}
+
+.form-blue .element-name .item-cont .icon-place:before{
+      content: '\e80B';
+}
+.form-blue .element-text .item-cont .icon-place:before{
+      content: '\e800';
+}
+.form-blue .icon-place:before {
+    position: absolute;
+    font: 1em "icons";
+    vertical-align: top;
+    top: 15px;
+    left: 0.9em;
+    pointer-events: none;
+    color: #A2A6A8;
+    z-index: 2;
+}
+
+.form-blue label .myerror {
+  display:inline-block;
+  font-size:1.0em;
+}
+.form-blue .myerror
+{
+  padding: 3px 14px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #ebebeb;
+  border: 1px solid #fbeed5;
+  border-radius: 4px;
+  display: block;
+  color: red;
+  border-color: #eed3d7;
+  margin-left: 25px;
+  line-height: 1;
+}

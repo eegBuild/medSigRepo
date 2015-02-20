@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block the_chart %}
+<div id="container" style="height: 500px; min-width: 310px"></div>
+{% endblock%}
+
+
+{% block the_scripts %}
+<script type ="text/javascript">
+var chart; // global
+theme = 'dark-unica';
+Highcharts.setOptions(theme );
+
+
+
+$(function () {
+    $.getJSON('static/smalljsonFile.json', function (datax) {
+
+
+        // Create a timer
+        var start = +new Date();
+		var z = 0;
+
+        // Create the chart
+        $('#container').highcharts('StockChart', {
+        chart : {
+            events : {
+                load : function () {
+
+                    // set up the updating of the chart each second
+                    var series = this.series[0];
+                    setInterval(function () {
+                        var x = (new Date()).getTime(), // current time
+                            y = datax[z];
+							z++;
+                        series.addPoint([x, y], true, true);
+                    }, 5);
+                }
+            }
+        },
+
+            rangeSelector: {
+                
+                buttons: [{
+                    type: 'second',
+                    count: 1,
+                    text: '1sec'
+                }, {
+                    type: 'second',
+                    count: 5,
+                    text: '5sec'
+                }, {
+                    type: 'second',
+                    count: 10,
+                    text: '10sec'
+                }, {
+                    type: 'second',
+                    count: 30,
+                    text: '30sec'
+                }, {
+                    type: 'minute',
+                    count: 1,
+                    text: '1min'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+                selected: 3
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Mv'
+                }
+            },
+
+            title: {
+                text: 'ECG Test Data From Galileo '
+            },
+
+            subtitle: {
+                text: 'Test Data From Galileo' // dummy text to reserve space for dynamic subtitle
+            },
+
+        series : [{
+            name : 'Random data',
+            data : (function () {
+                // generate an array of random data
+                var data = [], time = (new Date()).getTime(), i;
+
+                for (i = -21000; i <= 0; i += 1) {
+                    data.push([
+                        i,
+                        datax[i]
+                    ]);
+                }
+                return data;
+            }())
+        }]
+
+        });
+    });
+});
+
+
+</script>
+{% endblock %}
+

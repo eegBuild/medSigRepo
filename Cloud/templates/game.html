@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+
+{% block the_game %}
+<div id ='gameform' class = "center">
+	<form class="form-blue"  action="/seven_word" method="POST">
+		<div class="title">
+			<h2>Press Start to Begin</h2>
+		</div>
+		<div class="element-text">
+
+		<div class="item-cont"><input class="large" type="text" name="first_word" placeholder="First Word" required = "true" readonly = "true"/><span class="icon-place"  ></span></div>
+		<div class='item-cot'><label  class='myerror' style = 'visibility:hidden'></label></div>
+		<div class="item-cont"><input class="large" type="text" name="second_word" placeholder="Second Word"  required = "true" readonly = "true"/><span class="icon-place" ></span></div>
+		<div class="item-cot"><label class="myerror" style = "visibility:hidden"></label></div>
+		<div class="item-cont"><input class="large" type="text" name="third_word" placeholder="Third Word" required = "true" readonly = "true"/><span class="icon-place"  ></span></div>
+		<div class="item-cont"><label  class="myerror" style = "visibility:hidden"></label></div>
+		<div class="item-cont"><input class="large" type="text" name="fourth_word" placeholder="Fourth Word"  required = "true" readonly = "true"/><span class="icon-place" ></span></div>
+		<div class="item-cot"><label  class="myerror" style = "visibility:hidden"></label></div>
+		<div class="item-cont"><input class="large" type="text" name="fifth_word" placeholder="Fifth Word" required = "true" readonly = "true"/><span class="icon-place"  ></span></div>
+		<div class="item-cot"><label  class="myerror" style = "visibility:hidden"></label></div>
+		<div class="item-cont"><input class="large" type="text" name="sixth_word" placeholder="Sixth Word"  required = "true" readonly = "true"/><span class="icon-place" ></span></div>
+		<div class="item-cot"><label  class="myerror" style = "visibility:hidden"></label></div>
+		<div class="item-cont"><input class="large" type="text" name="seventh_word" placeholder="Seventh Word" required = "true" readonly = "true"/><span class="icon-place"  ></span></div>
+		<div class="item-cot"><label  class="myerror" style = "visibility:hidden"></label></div>
+			
+		</div>
+		<div class="submit">
+			<input id = "game_form_submit" type="button" value="Start"/>
+		</div>
+	</form>
+</div>
+
+{% endblock %}
+
+{% block the_rules %}
+<div class = "center" >
+	<div id ='therules' class = "textblock">
+		<h2>Here are the rules</h2>
+		<ol>
+			<li>You will be given a source word containing a minimum of seven letters</li><br>
+			<li>Each word exists within the Test Dictionary</li><br>
+			<li>Each word is made up from letters contained within the source word</li><br>
+			<li>The number of each letter in the source word hasn't been exceeded</li><br>
+			<li>The words all have three letters or more. All words in the Test dictionary are longer than 2 letters</li><br>
+			<li>There are no duplicate words</li><br>
+			<li>None of the seven words are the source word</li><br> 
+		</ol>
+	</div>
+</div>
+{% endblock%}
+
+{% block the_highscore %}
+<div class = "center" >
+	<div id ='x'>
+	</div>
+</div>
+{% endblock%}
+
+{% block the_scripts %}
+
+<script type ="text/javascript">
+jQuery(document).ready(function () {
+	$( "#game_form_submit" ).click(function() {
+
+		$.ajax({
+            url: '/start_game',
+            type: 'POST',
+			dataType : 'text',
+            success: function(response) 
+			{
+				var obj = $.parseJSON(response);
+				preGame('#gameform', obj);
+            },
+            error: function(error) 
+			{
+                alert(error+"Error");
+				preGame('#gameform', "TheWord");
+				//$('#result').append(error);
+            }
+        });
+	});
+
+	$(function() {
+		
+		$.ajax({
+            url: '/getxmldata',
+            type: 'POST',
+			//dataType : 'html',
+            success: function(response) 
+			{
+				var obj = $.parseJSON(response);
+				setScoreTable('#x', obj);
+            },
+            error: function(error) 
+			{
+                alert(error+"Error");
+				//$('#result').append(error);
+            }
+        });
+	
+	});
+
+});
+			
+
+</script>
+{% endblock%}

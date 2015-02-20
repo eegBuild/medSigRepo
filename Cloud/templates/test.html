@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+
+{% block the_game %}
+<div class = "center">
+<p> This is the index</p>
+<br>
+<strong>Enter a value to echo back:</strong>
+
+<button type='button' id='submitBtn' name='submitBtn'>Submit via AJAX</button><br /><br />
+
+<strong><div id='result'></div></strong>
+</div>
+
+{% endblock %}
+
+{% block the_rules %}
+<div class = "center" style = "margin:10px;">
+	<p> test rules </p>
+</div>
+{% endblock%}
+
+{% block the_highscore %}
+<div id ='test' class = "center" style = "margin:10px;">
+	<p>word is {{ x }}</p>
+</div>
+{% endblock%}
+
+{% block the_scripts %}
+<script type ="text/javascript">
+    jQuery(document).ready(function () {
+	//testDisplay('#test');
+	
+	$(function() {
+	
+
+    $('#submitBtn').click(function() {
+		
+		$.ajax({
+            url: 'http://127.0.0.1:5000/getxmldata',
+            type: 'POST',
+			dataType : 'text',
+            success: function(response) 
+			{
+				var obj = $.parseJSON(response);
+                alert(response);
+				$('#result').append(obj.players[1].fname + " " + obj.players[1].sname);
+				//$('#result').append(response);
+            },
+            error: function(error) 
+			{
+                alert(error+"Error");
+				$('#result').append(error);
+            }
+        });
+	
+    });
+	
+        
+});
+});
+			
+
+</script>
+
+{% endblock%}
+
