@@ -3,6 +3,15 @@ from uuid import uuid1 as get_mac
 from cloud_control import *
 from werkzeug.datastructures import ImmutableMultiDict
 import datetime
+import mysql.connector
+
+sqlconfig = {
+  'user': 'c00162379pb',
+  'password': 'x',
+  'host': 'mysql.server',
+  'database': 'c00162379pb$medsig162379rt',
+  'raise_on_warnings': True,
+}
 
 app = Flask(__name__)
 
@@ -96,6 +105,24 @@ def writeFile(x):
     #jsonf = json.loads(x)
     with open('comments.log', 'w') as log:
         print(x, file=log)
+		
+		
+@app.route('/sql_test')
+def sql_test():
+    cnx = mysql.connector.connect(**sqlconfig)
+    cursor = cnx.cursor()
+
+    query = ("SELECT unit_id, unit_number FROM unit")
+
+    cursor.execute(query)
+
+    for (unit_id,unit_number) in cursor:
+        the_data = cursor.fetchall()
+
+    cursor.close()
+    cnx.close()
+    return render_template('sql.html',
+                           rows = the_data,)
         
 
 
