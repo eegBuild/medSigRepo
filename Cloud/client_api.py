@@ -124,6 +124,22 @@ def sql_test():
     return render_template('sql.html',
                            rows = the_data,)
         
+@app.route('/unit_hello', methods = ['POST','GET'])
+def logUnit():
+    #print(request)
+    out = str(request.data)
+    out = out.replace("b","")
+    cnx = mysql.connector.connect(**sqlconfig)
+    cursor = cnx.cursor()
+    args = [out]
+    args_sel = [out,0]
+    result_sel = cursor.callproc('getUnitIdFromUnitNumber',args_sel)
+    args = [result_sel[1]]
+    result_args = cursor.callproc('setUnitOnline',args)
+
+    cnx.commit()
+    cursor.close()
+    cnx.close()
 
 
 
