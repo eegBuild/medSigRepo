@@ -262,7 +262,14 @@ footer {
         }
 
 /* page titles */
-
+#gif
+{
+	float:right;
+	max-width:350px;
+	min-width:345px;
+	min-height:400px;
+	background-color: #ffffff;
+}
 
 
 

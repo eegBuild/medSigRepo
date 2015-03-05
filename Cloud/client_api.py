@@ -3,15 +3,6 @@ from uuid import uuid1 as get_mac
 from cloud_control import *
 from werkzeug.datastructures import ImmutableMultiDict
 import datetime
-import mysql.connector
-
-sqlconfig = {
-  'user': 'c00162379pb',
-  'password': 'x',
-  'host': 'mysql.server',
-  'database': 'c00162379pb$medsig162379rt',
-  'raise_on_warnings': True,
-}
 
 app = Flask(__name__)
 
@@ -69,9 +60,11 @@ def call_galileo():
 
 @app.route("/get_my_ip", methods=["POST","GET"])
 def get_my_ip():
+    #ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    #return '{"ip": "'+ip+'"}'
+    call_file_chart()
     ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     return '{"ip": "'+ip+'"}'
-
 @app.route("/get_my_unit", methods=["POST","GET"])
 def get_my_unit():
     with open('comments.log') as log:
@@ -105,41 +98,7 @@ def writeFile(x):
     #jsonf = json.loads(x)
     with open('comments.log', 'w') as log:
         print(x, file=log)
-		
-		
-@app.route('/sql_test')
-def sql_test():
-    cnx = mysql.connector.connect(**sqlconfig)
-    cursor = cnx.cursor()
-
-    query = ("SELECT unit_id, unit_number FROM unit")
-
-    cursor.execute(query)
-
-    for (unit_id,unit_number) in cursor:
-        the_data = cursor.fetchall()
-
-    cursor.close()
-    cnx.close()
-    return render_template('sql.html',
-                           rows = the_data,)
         
-@app.route('/unit_hello', methods = ['POST','GET'])
-def logUnit():
-    #print(request)
-    out = str(request.data)
-    out = out.replace("b","")
-    cnx = mysql.connector.connect(**sqlconfig)
-    cursor = cnx.cursor()
-    args = [out]
-    args_sel = [out,0]
-    result_sel = cursor.callproc('getUnitIdFromUnitNumber',args_sel)
-    args = [result_sel[1]]
-    result_args = cursor.callproc('setUnitOnline',args)
-
-    cnx.commit()
-    cursor.close()
-    cnx.close()
 
 
 

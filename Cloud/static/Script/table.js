@@ -58,7 +58,8 @@ var unitList =[{"unit_id":1,"unit_type":"ECG","unit_number":"97-AC-D1-8E-D2-A8",
 {"unit_id":7,"unit_type":"ECG","unit_number":"7D-44-C6-4B-BE-EC","status":"green","assign_patient":"x","ip_address":"19.238.18.182"},
 {"unit_id":8,"unit_type":"ECG","unit_number":"39-7C-05-B8-A7-9F","status":"red","assign_patient":"x","ip_address":"59.26.150.106"},
 {"unit_id":9,"unit_type":"ECG","unit_number":"82-E2-F0-1C-F5-FA","status":"red","assign_patient":"x","ip_address":"131.120.205.55"},
-{"unit_id":10,"unit_type":"EEG","unit_number":"88-61-96-71-CB-87","status":"red","assign_patient":"x","ip_address":"60.221.56.235"}];
+{"unit_id":10,"unit_type":"EEG","unit_number":"88-61-96-71-CB-87","status":"red","assign_patient":"x","ip_address":"60.221.56.235"},
+{"unit_id":11,"unit_type":"EEG","unit_number":"FF-61-96-3D-CB-8C","status":"red","assign_patient":"x","ip_address":"60.221.56.235"}];
 
 var fadeTime = 1000;
 
@@ -96,7 +97,7 @@ function setPatientsTable(divIn)
 			
 			out +=("\
 			  <tr>\
-			  <td class = 'wrap'></td>\
+			  <td></td>\
 			  <td class = 'wrap'></td>\
 			  <td class = 'wrap'></td>\
 			  <td class = 'wrap'></td>\
@@ -198,6 +199,7 @@ function setUnitTable(divIn)
 			</table>\
 			</div>\
 			</div>\
+			<div id ='gif'><img id = 'anigif' src = ../static/Images/ani.png /></div>\
 			");
 		$(divIn).hide();
 		$(divIn).append(out);
@@ -362,42 +364,45 @@ function unitTableFormWork(table, pos, file)
   
   	$(table).find('.btnP').live('click', function(e) 
 	{
-	alert("bang");
-		window.location="/live_chart";
+		out = ("<img id = 'anigif' src = ../static/Images/anigif.gif />");
+		$('#gif').hide();
+		$('#gif').empty();
+		$('#gif').prepend(out);
+		$('#gif').fadeIn(fadeTime);
 		e.preventDefault();
 	});
 
 
 
-  $(table).find('.edit .btnE').live('click', function(e) 
+  $(table).find('.btnE').live('click', function(e) 
   {
 		tableEditable(this);
 		e.preventDefault();
   });
   
-  $(table).find('.edit .btnEtoSave').live('click', function(e) 
+  $(table).find('.btnEtoSave').live('click', function(e) 
 	{
 		tableEditable(this);
 		e.preventDefault();
 	});
   
-  $(table).find('.edit .btnEsaved').live('click', function(e) 
+  $(table).find('.btnEsaved').live('click', function(e) 
 	{
 		tableEditable(this);
 		e.preventDefault();
 	});
   
-  $(table).find('.edit .btnV').live('click', function(e) 
+  $(table).find('.btnV').live('click', function(e) 
 	{
 		tableVerify(this);
 		e.preventDefault();
   });
-	$(table).find('.edit .btnVx').live('click', function(e) 
+	$(table).find('.btnVx').live('click', function(e) 
 	{
 		tableVerify(this);
 		e.preventDefault();
   });
-    $(table).find('.edit .btnD').live('click', function(e) 
+    $(table).find('.btnD').live('click', function(e) 
 	{
 
 		var r = confirm("Do you want to delete this Record?");
@@ -411,7 +416,7 @@ function unitTableFormWork(table, pos, file)
 			}
 		e.preventDefault();
   });
-	$(table).find('.edit .btnDx').live('click', function(e) 
+	$(table).find('.btnDx').live('click', function(e) 
 	{
 		tableVerify(this);
 		e.preventDefault();
@@ -472,35 +477,35 @@ function tableFormWork(table, pos)
 		
   });
 
-  $(table).find('.edit .btnE').live('click', function(e) 
+  $(table).find('.btnE').live('click', function(e) 
   {
 		tableEditable(this);
 		e.preventDefault();
   });
   
-  $(table).find('.edit .btnEtoSave').live('click', function(e) 
+  $(table).find('.btnEtoSave').live('click', function(e) 
 	{
 		tableEditable(this);
 		e.preventDefault();
 	});
   
-  $(table).find('.edit .btnEsaved').live('click', function(e) 
+  $(table).find('.btnEsaved').live('click', function(e) 
 	{
 		tableEditable(this);
 		e.preventDefault();
 	});
   
-  $(table).find('.edit .btnV').live('click', function(e) 
+  $(table).find('.btnV').live('click', function(e) 
 	{
 		tableVerify(this);
 		e.preventDefault();
   });
-	$(table).find('.edit .btnVx').live('click', function(e) 
+	$(table).find('.btnVx').live('click', function(e) 
 	{
 		tableVerify(this);
 		e.preventDefault();
   });
-    $(table).find('.edit .btnD').live('click', function(e) 
+    $(table).find('.btnD').live('click', function(e) 
 	{
 
 		var r = confirm("Do you want to delete this Record?");
@@ -514,7 +519,7 @@ function tableFormWork(table, pos)
 			}
 		e.preventDefault();
   });
-	$(table).find('.edit .btnDx').live('click', function(e) 
+	$(table).find('.btnDx').live('click', function(e) 
 	{
 		tableVerify(this);
 		e.preventDefault();

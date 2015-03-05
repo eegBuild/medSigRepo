@@ -39,6 +39,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1E90FE', end
 	padding-left:275px;
 }
 
+#test{
+
+	display:table;
+	background-color: #858585;
+	min-width:1300px;
+}
+
+#gif
+{
+	float:right;
+	padding-right:65px;
+	max-width:300px;
+	min-width:295px;
+	min-height:350px;
+	background-color: #858585;
+	margin-top:10px;
+	margin-right:5px;
+}
+
+#gif img
+{
+
+	max-width:100%;
+	
+}
+
 	
 .container {
 	position: relative;
@@ -118,9 +144,7 @@ footer {
 	
 }
 
-#test{
-	margin-top:20px;
-}
+
 
 .center{
 	margin:auto;
