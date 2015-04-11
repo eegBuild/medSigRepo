@@ -3,6 +3,15 @@ from uuid import uuid1 as get_mac
 from cloud_control import *
 from werkzeug.datastructures import ImmutableMultiDict
 import datetime
+import mysql.connector
+
+sqlconfig = {
+  'user': 'root',
+  'password': '',
+  'host': '127.0.0.1',
+  'database': 'c00162379pb$medsig162379rt',
+  'raise_on_warnings': True,
+}
 
 app = Flask(__name__)
 
@@ -22,6 +31,43 @@ def display_home():
                             the_gap = ". ",
                             the_online_unit = session.get('online', 'No Online Units'),
                             the_unitNum = unitNum ,)
+
+@app.route('/unit_hello', methods = ['POST','GET'])
+def logUnit():
+    mac = request.args.get('@mac')
+    cnx = mysql.connector.connect(**sqlconfig)
+    cursor = cnx.cursor()
+    args_sel = [mac,0]
+    result_sel = cursor.callproc('c00162379pb$medsig162379rt.getUnitIdFromUnitNumber',args_sel)
+    args = [result_sel[1],0]
+    cursor.callproc('c00162379pb$medsig162379rt.setUnitOnline',args)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+    return render_template('sql.html',
+                           answer= type(result_sel[1]),)
+
+
+@app.route('/unit_play', methods = ['POST','GET'])
+def playUnit():
+    mac = request.args.get('@mac')
+    cnx = mysql.connector.connect(**sqlconfig)
+    cursor = cnx.cursor()
+    args_sel = [mac,0]
+    result_sel = cursor.callproc('c00162379pb$medsig162379rt.getUnitIdFromUnitNumber',args_sel)
+    args = [result_sel[1]]
+    cursor.callproc('c00162379pb$medsig162379rt.setLiveSignal',args)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+    return render_template('sql.html',
+                           answer= type(result_sel[1]),)
+
+    #query = ("""Update unit SET unit_online= 1 WHERE unit_number = %s;""",the_data)
+    #cursor.execute(query ,out)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
 
 @app.route('/live_chart')
 def call_live_chart():
@@ -107,4 +153,4 @@ app.config['SECRET_KEY'] = 'thisismysecretkeywhichyouwillneverguesshahahahahahah
 
 if __name__ == "__main__":
 
-    app.run(port=80, debug=True, host='0.0.0.0')
+    app.run(port=5000, debug=True, host='0.0.0.0')

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+	
+	{% block the_chart %}
+		<div id = 'sqlTestDiv'style ='max-wih:400; max-height:400; display:inline-block'>
+		{% for each_row in rows %}
+            <option value="{{each_row[0]}}">{{each_row[0]}}, {{each_row[1]}}</option>
+        {% endfor %}
+		</div>
+		<input id = 'button2' type = 'button' onClick="location.href='sql_test'" value = 'Test SQL'>
+	<p>x{{answer}}x</p>
+	{% endblock %}
+	
+	{% block the_scripts %}
+	<script type ="text/javascript">
+
+
+	</script>
+	{% endblock%}
+
