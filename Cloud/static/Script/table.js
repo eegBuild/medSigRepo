@@ -1094,7 +1094,7 @@ function onFileSelectChange(sel)
 	$('#display').empty();
 
 	$(function () {
-    $.getJSON('static/jsonFIle.json', function (data) {
+    $.getJSON('static/jsonFile.json', function (data) {
 
 
 
