@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" >
+    <title>{{the_title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="../static/Content/sigsite.css" rel="stylesheet" >
+	<link type="text/css" href="../static/Content/formx.css" rel="stylesheet" >
+	<link type="text/css" href="../static/Content/tableStyler.css" rel="stylesheet" >
+	<script type ="text/javascript" src="../static/Script/jquery-1.8.2.js"></script>
+	<script type ="text/javascript" src="../static/Script/Highstock/js/highstock.js"></script>
+	<script type ="text/javascript" src="../static/Script/Highstock/js/themes/dark-unicax.js"></script>
+	<script type ="text/javascript" src="../static/Script/myScripts.js"></script>
+	<script type ="text/javascript" src="../static/Script/adminUser.js"></script>
+	<script type ="text/javascript" src="../static/Script/table.js"></script>
+	
+
+	{% block the_scripts %}
+	{% endblock%}
+</head>
+<body id = "mainBody">
+	<div class = "container">
+		
+		<div class="float-left" id = 'fixedHead'>
+			<div class="site-title">
+				<img style = 'float:left' src="../static/Images/Logo5.png" >
+				<div id = 'welcome'>Logged in as {{ the_name }}<br> .</div>
+				
+			</div>
+			
+		</div>
+		<div class="menuContainer" id = 'menuContainer'>
+			<ul id="menu-bar">
+				 <li id = "home" class="home"><a href="/processlogin">Home</a></li>
+				 <li class ="patient" id = "patient"><a href="#">Patients</a></li>
+				 <li id = "signalunits" class = "signalunits"><a href="#">Signal Units</a></li>
+				 <li id = "email" class = "email"><a href="#">Set Email Notification</a></li>
+				 <li id = "adduser" class = "adduser"><a href="/add_new_user">Add User</a></li>
+				 <li id = "help" class = "help"><a href="#">Help</a></li>
+				 <div style = 'float:right'>
+				 <li id = "login" class = "login"><a href="/logout">Log Out</a></li>
+				 </div>
+				 
+			</ul>
+		</div>
+		
+
+		<div id="test">
+			<div class='login-card'>
+		<p><h2>{{message}}</h2></p>
+			<br/>
+		  <form action='/add_new_user' method='POST'>
+			<input type='text' name='name' placeholder='User Name' >
+			<input type='email' name='email' placeholder='Email eg user@<your company>.ie' >
+			<input type='text' name='pass' placeholder='Password'>
+			<input type='submit' name='login' class='login login-submit' value='Add User'>
+		  </form>
+			<br/>
+	</div>
+		</div>
+		
+
+		{% block the_body %}
+        {% endblock %}
+		
+		{% block the_chart %}
+		{% endblock%}
+	
+		
+		
+		<footer>
+			<div class="content-wrapper">
+				<div class="footer-left">
+					<p style = 'position: absolute; bottom: 0; left: 0; padding-left:10px;'>&copy; 2015 - R Tapley C00162379</p>
+				</div>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

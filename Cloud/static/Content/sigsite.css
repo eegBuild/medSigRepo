@@ -1,20 +1,15 @@
+html{min-width:1000px;}
+
 body{
 	margin: 1px;
 	margin-right: 4px;
+	background: url(../Images/medical-background3.jpg) no-repeat center center fixed;
+    background-size: cover;
 	overflow: hidden;
 }
 
 .float-left {
     float: left;
-	/*background-color: #0f52c1;*/
-background: rgb(30,144,254); /* Old browsers */
-background: -moz-linear-gradient(top, rgba(30,144,254,1) 0%,  rgba(135,205,250,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,144,254,1)),  color-stop(100%,rgba(135,205,250,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, rgba(30,144,254,1) 0%,rgba(135,205,250,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, rgba(30,144,254,1) 0%,rgba(135,205,250,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, rgba(30,144,254,1) 0%,rgba(135,205,250,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom, rgba(30,144,254,1) 0%,rgba(135,205,250,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1E90FE', endColorstr='#87CDFA',GradientType=0 ); /* IE6-9 */
 	width:100%;
 	overflow:hidden;
 	position:relative;
@@ -39,47 +34,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1E90FE', end
 	padding-left:275px;
 }
 
-#test{
-
-	display:table;
-	background-color: #858585;
-	min-width:1300px;
-}
-
-#gif
-{
-	float:right;
-	padding-right:65px;
-	max-width:300px;
-	min-width:295px;
-	min-height:350px;
-	background-color: #858585;
-	margin-top:10px;
-	margin-right:5px;
-}
-
-#gif img
-{
-
-	max-width:100%;
-	
-}
-
 	
 .container {
 	position: relative;
 	overflow: hidden;
 	overflow-y: auto;
-	background: -moz-linear-gradient(left, rgba(240,248,250,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(240,248,250,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left, rgba(240,248,250,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left, rgba(240,248,250,0.65) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left, rgba(240,248,250,0.65) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
-	background: linear-gradient(to right, rgba(240,248,250,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F0F8FA', endColorstr='#F0F8FA',GradientType=1 ); /* IE6-9 */
-	-webkit-box-shadow: 0 9px 9px 1px #e7e7e8;
-	-moz-box-shadow: 0 9px 9px 1px #e7e7e8;
-	box-shadow: 0 0 18px 0 #999;
+	height:100vh;
 	/*width:1124px;*/
 	margin-left:auto;
 	margin-right:auto;
@@ -144,7 +104,9 @@ footer {
 	
 }
 
-
+#test{
+	margin-top:20px;
+}
 
 .center{
 	margin:auto;
@@ -160,20 +122,50 @@ ol{
 	margin-top:10px;
 }
 
+#gif
+{
+	float:right;
+	padding-right:65px;
+	max-width:300px;
+	min-width:295px;
+	min-height:350px;
+	background-color: rgba(0,0,0,0);
+	margin-top:10px;
+	margin-right:5px;
+	position: relative; 
+}
+
+#gif img
+{
+	max-width:100%;
+	border: 3px solid rgba(0,97,191,0.8);
+
+}
+
+#gif p
+{
+	color:#63db34;
+	rgba(0,0,0,0);
+	position: absolute; 
+	top: 0px; 
+	left: 5px; 	
+}
+
 /*------------- Menu Bar------------------*/
 
 #menuContainer{
 	
-	background-color: #87CDFA;
+
 	clear:both;
 	padding-bottom:10px;
+	max-width:90%;
 }
 
 #menu-bar {
-  width: 98%;
+  min-width: 990px;
   margin: 0px 0px 0px 0px;
-  padding: 6px 6px 0px 6px;
-  height: 30px;
+  padding: 6px 6px 6px 6px;
+  height: 40px;
   line-height: 100%;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -182,14 +174,14 @@ ol{
   box-shadow: 2px 2px 3px #666666;
   -webkit-box-shadow: 2px 2px 3px #666666;
   -moz-box-shadow: 2px 2px 3px #666666;
-  background: #1E90FF;
+  background-color: rgba(0,97,191,0.8);
   border: solid 1px #1E90FF;
   position:relative;
   z-index:999;
 }
 #menu-bar li {
   margin: 0px 3px 6px 3px;
-  padding: 0px 6px 0px 6px;
+  padding: 0px 16px 0px 16px;
   float: left;
   position: relative;
   list-style: none;
@@ -212,18 +204,14 @@ ol{
 #menu-bar li ul li a {
   margin: 0;
 }
-#menu-bar .active a, #menu-bar li:hover > a {
-  background: #00BFFF;
-  background: linear-gradient(top,  #EBEBEB,  #A1A1A1);
-  background: -ms-linear-gradient(top,  #EBEBEB,  #A1A1A1);
-  background: -webkit-gradient(linear, left top, left bottom, from(#EBEBEB), to(#A1A1A1));
-  background: -moz-linear-gradient(top,  #EBEBEB,  #A1A1A1);
+#menu-bar .active a, #menu-bar li:hover  {
+
   color: #444444;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
   box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
   text-shadow: 2px 2px 3px #FFFFFF;
-  opacity: 0.25;
+  opacity: 0.60;
 }
 #menu-bar ul li:hover a, #menu-bar li:hover li a {
   background: none;
@@ -233,6 +221,7 @@ ol{
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 }
+/*
 #menu-bar ul a:hover {
   background: #00BFFF !important;
   color: #FFFFFF !important;
@@ -241,6 +230,7 @@ ol{
   -moz-border-radius: 0;
   text-shadow: 2px 2px 3px #FFFFFF;
 }
+*/
 #menu-bar li:hover > ul {
   display: block;
  
@@ -280,7 +270,7 @@ ol{
   padding: 0;
 }
 #menu-bar ul a {
-  padding:10px 0px 10px 20px;
+  padding:10px 0px 10px 300px;
   color:#424242 !important;
   font-size:12px;
   font-style:normal;
@@ -326,42 +316,205 @@ ol{
 
 #menu-bar .home {
    background: url("../Images/home.png") no-repeat center left;
-   padding: 1px 0px 0px 1px;
+ 
 }
 #menu-bar .patient {
    background: url("../Images/patient.png") no-repeat center left;
-   padding: 1px 0px 0px 1px;
+
 }
 #menu-bar .signalunits {
    background: url("../Images/signalunit.png") no-repeat center left;
-   padding: 1px 0px 0px 1px;
+
 }
 #menu-bar .help {
    background: url("../Images/help.png") no-repeat center left;
-   padding: 1px 0px 0px 1px;
+
+}
+#menu-bar .adduser {
+   background: url("../Images/user_add.png") no-repeat center left;
+
+}
+#menu-bar .contactadmin {
+   background: url("../Images/contactadmin.png") no-repeat center left;
+
 }
 #menu-bar .email {
    background: url("../Images/email.png") no-repeat center left;
-   padding: 1px 0px 0px 1px;
+ 
 }
 #menu-bar .login {
    background: url("../Images/login.png") no-repeat center left;
-   padding: 1px 0px 0px 1px;
+
 }
 #menu-bar .view {
    background: url("../Images/view.png") no-repeat center left;
-   padding: 1px 0px 0px 3px;
+
 }
 #menu-bar .add {
    background: url("../Images/add.png") no-repeat center left;
-   padding: 1px 0px 0px 1px;
-   z-index: 5;
+
+
 }
 #menu-bar .delete {
    background: url("../Images/delete.png") no-repeat center left;
-   padding: 1px 0px 0px 1px;
+
 }
 #menu-bar .edit {
    background: url("../Images/edit.png") no-repeat center left;
-   padding: 1px 0px 0px 1px;
+
+}
+
+
+/*-------------login Form------------------*/
+.login-body{
+	padding-top:10px;
+	background: url(../Images/medical-background3.jpg) no-repeat center center fixed;
+    background-size: cover;
+	
+}
+.login-card {
+  padding: 20px;
+  width: 300px;
+  background-color: #D6D8D4;
+  margin: auto auto;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.login-card h1 {
+  font-weight: 50;
+  text-align: center;
+  font-size: 2.0em;
+}
+
+.login-card h2 {
+  font-weight: 400;
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
+
+.login-card h3 {
+  font-weight: 400;
+  text-align: center;
+  font-size: 12px;
+  font-family: arial;
+  color: #E4E3FF;
+}
+
+.login-card input[type=submit] {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.login-card input[type=text], input[type=password], input[type=email]{
+  height: 30px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 15px;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  /* border-radius: 2px; */
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.login-card img {
+  height: 50px;
+  width: 100%;
+  margin-bottom: 15px;
+  -webkit-appearance: none;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  /* border-radius: 2px; */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.login-card input[type=text]:hover, input[type=password]:hover, input[type=email]:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.login {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+/* border-radius: 3px; */
+/* -webkit-user-select: none;
+  user-select: none; */
+}
+
+.login-submit {
+  /* border: 1px solid #3079ed; */
+  border: 0px;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  background-color: #4d90fe;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+}
+
+.login-submit:hover {
+  /* border: 1px solid #2f5bb7; */
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #357ae8;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
+
+.login-card a {
+  text-decoration: none;
+  color: #666;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  opacity: 0.6;
+  transition: opacity ease 0.5s;
+}
+
+.login-card a:hover {
+  opacity: 1;
+}
+
+.login-help {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+}
+.login-help p{
+	font-size: 14px;
+	color: #E01F1F;
+	}
+	
+a:link {
+    color:#3F00A3;
+    background-color:transparent;
+    text-decoration:none;
+}
+a:visited {
+    color:#00ff00;
+    background-color:transparent;
+    text-decoration:none;
+}
+a:hover {
+    color:#ff0000;
+    background-color:transparent;
+    text-decoration:underline;
+}
+a:active {
+    color:#9e80cf;
+    background-color:transparent;
+    text-decoration:underline;
 }

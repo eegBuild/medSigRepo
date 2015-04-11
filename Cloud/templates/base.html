@@ -25,7 +25,7 @@
 		setUnitTable("#test");
     });
 	
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 });
 </script>
 	{% block the_scripts %}
@@ -36,7 +36,7 @@
 		
 		<div class="float-left" id = 'fixedHead'>
 			<div class="site-title">
-				<img style = 'float:left' src="../static/Images/logo5.png" >
+				<img style = 'float:left' src="../static/Images/Logo5.png" >
 				<div id = 'welcome'>Logged in as {{ the_name }}<br> .</div>
 				
 			</div>
@@ -51,7 +51,7 @@
 				 <li id = "help" class = "help"><a href="#">Help</a></li>
 				 <li id = "contactadmin" class = "contactadmin"><a href="#">Contact Admin</a></li>
 				 <div style = 'float:right'>
-				 <li id = "login" class = "login"><a href="#">Log Out</a></li>
+				 <li id = "login" class = "login"><a href="/logout">Log Out</a></li>
 				 </div>
 				 
 			</ul>
@@ -60,7 +60,13 @@
 
 		<div id="test">
 		</div>
-
+		
+{% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+		{% block the_body %}
+        {% endblock %}
+		
 		{% block the_chart %}
 		{% endblock%}
 	
@@ -69,7 +75,7 @@
 		<footer>
 			<div class="content-wrapper">
 				<div class="footer-left">
-					<p style = 'position: absolute; bottom: 0; left: 0; padding-left:10px;'>&copy; 2014 - R Tapley C00162379</p>
+					<p style = 'position: absolute; bottom: 0; left: 0; padding-left:10px;'>&copy; 2015 - R Tapley C00162379</p>
 				</div>
 			</div>
 		</footer>

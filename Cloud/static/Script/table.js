@@ -1,93 +1,39 @@
-var patientList = [{"id":1,"first_name":"Kathleen","last_name":"Robertson","email":"krobertson0@printfriendly.com","country":"Finland","job_title":"Actuary","phone":"0-(275)418-8742"},
-{"id":2,"first_name":"Ronald","last_name":"Austin","email":"raustin1@cnet.com","country":"China","job_title":"Analyst Programmer","phone":"3-(648)343-0211"},
-{"id":3,"first_name":"Larry","last_name":"Wells","email":"lwells2@canalblog.com","country":"China","job_title":"Research Assistant IV","phone":"1-(162)237-5844"},
-{"id":4,"first_name":"Tammy","last_name":"Alexander","email":"talexander3@myspace.com","country":"China","job_title":"Product Engineer","phone":"0-(887)216-5132"},
-{"id":5,"first_name":"Fred","last_name":"Andrews","email":"fandrews4@angelfire.com","country":"Afghanistan","job_title":"Staff Accountant I","phone":"1-(823)036-9100"},
-{"id":6,"first_name":"Jeremy","last_name":"Morrison","email":"jmorrison5@si.edu","country":"Chile","job_title":"Legal Assistant","phone":"0-(521)846-0281"},
-{"id":7,"first_name":"Roy","last_name":"Vasquez","email":"rvasquez6@amazon.de","country":"South Korea","job_title":"Environmental Specialist","phone":"8-(812)258-0853"},
-{"id":8,"first_name":"Kathleen","last_name":"Simmons","email":"ksimmons7@istockphoto.com","country":"United States","job_title":"Recruiting Manager","phone":"9-(151)462-7963"},
-{"id":9,"first_name":"Kenneth","last_name":"Reynolds","email":"kreynolds8@xinhuanet.com","country":"France","job_title":"Programmer Analyst I","phone":"0-(715)788-4732"},
-{"id":10,"first_name":"Beverly","last_name":"Watkins","email":"bwatkins9@comsenz.com","country":"Indonesia","job_title":"Editor","phone":"1-(653)613-9167"},
-{"id":11,"first_name":"Jean","last_name":"Mason","email":"jmasona@feedburner.com","country":"Madagascar","job_title":"Marketing Manager","phone":"9-(265)480-1201"},
-{"id":12,"first_name":"Patricia","last_name":"Martinez","email":"pmartinezb@soundcloud.com","country":"Brazil","job_title":"Internal Auditor","phone":"9-(336)788-0302"},
-{"id":13,"first_name":"Diane","last_name":"Burns","email":"dburnsc@adobe.com","country":"Mexico","job_title":"Business Systems Development Analyst","phone":"2-(483)787-9145"},
-{"id":14,"first_name":"Adam","last_name":"Owens","email":"aowensd@shutterfly.com","country":"Pakistan","job_title":"Cost Accountant","phone":"5-(579)490-1462"},
-{"id":15,"first_name":"Judith","last_name":"Fox","email":"jfoxe@accuweather.com","country":"Indonesia","job_title":"Financial Analyst","phone":"8-(367)115-5609"},
-{"id":16,"first_name":"Ryan","last_name":"Patterson","email":"rpattersonf@pen.io","country":"Ukraine","job_title":"Assistant Manager","phone":"3-(651)998-2011"},
-{"id":17,"first_name":"Jane","last_name":"Armstrong","email":"jarmstrongg@latimes.com","country":"Armenia","job_title":"Product Engineer","phone":"8-(810)649-6198"},
-{"id":18,"first_name":"Karen","last_name":"Little","email":"klittleh@blogspot.com","country":"Portugal","job_title":"Quality Engineer","phone":"8-(694)882-8440"},
-{"id":19,"first_name":"Jennifer","last_name":"Torres","email":"jtorresi@ihg.com","country":"Tajikistan","job_title":"Civil Engineer","phone":"2-(713)238-0072"},
-{"id":20,"first_name":"Kenneth","last_name":"Duncan","email":"kduncanj@ow.ly","country":"Indonesia","job_title":"Developer IV","phone":"3-(892)981-5131"},
-{"id":21,"first_name":"Steve","last_name":"Wallace","email":"swallacek@mapquest.com","country":"France","job_title":"Paralegal","phone":"2-(548)166-7837"},
-{"id":22,"first_name":"Jeffrey","last_name":"Hunt","email":"jhuntl@slate.com","country":"Portugal","job_title":"Systems Administrator I","phone":"0-(098)586-7521"},
-{"id":23,"first_name":"Kimberly","last_name":"Knight","email":"kknightm@rediff.com","country":"Vietnam","job_title":"Cost Accountant","phone":"7-(528)101-3204"},
-{"id":24,"first_name":"Charles","last_name":"Murphy","email":"cmurphyn@delicious.com","country":"Burkina Faso","job_title":"Quality Engineer","phone":"2-(599)182-1907"},
-{"id":25,"first_name":"Juan","last_name":"Morris","email":"jmorriso@rambler.ru","country":"Russia","job_title":"Social Worker","phone":"5-(363)619-1609"},
-{"id":26,"first_name":"Pamela","last_name":"Parker","email":"pparkerp@shinystat.com","country":"Indonesia","job_title":"Teacher","phone":"4-(392)632-5528"},
-{"id":27,"first_name":"Margaret","last_name":"Rodriguez","email":"mrodriguezq@whitehouse.gov","country":"United Kingdom","job_title":"Information Systems Manager","phone":"7-(919)974-4490"},
-{"id":28,"first_name":"Diane","last_name":"Fowler","email":"dfowlerr@mozilla.com","country":"Peru","job_title":"Accountant I","phone":"1-(359)088-9177"},
-{"id":29,"first_name":"Andrew","last_name":"Porter","email":"aporters@123-reg.co.uk","country":"Portugal","job_title":"Technical Writer","phone":"8-(264)768-2203"},
-{"id":30,"first_name":"Justin","last_name":"Long","email":"jlongt@etsy.com","country":"Indonesia","job_title":"Business Systems Development Analyst","phone":"0-(560)702-9460"},
-{"id":31,"first_name":"Julie","last_name":"Burke","email":"jburkeu@parallels.com","country":"China","job_title":"Payment Adjustment Coordinator","phone":"5-(444)152-4384"},
-{"id":32,"first_name":"Doris","last_name":"Hunter","email":"dhunterv@bravesites.com","country":"Russia","job_title":"Safety Technician II","phone":"7-(843)825-5405"},
-{"id":33,"first_name":"Shawn","last_name":"Matthews","email":"smatthewsw@webmd.com","country":"Peru","job_title":"Senior Cost Accountant","phone":"8-(540)049-3268"},
-{"id":34,"first_name":"Janice","last_name":"Alvarez","email":"jalvarezx@unesco.org","country":"Russia","job_title":"Senior Sales Associate","phone":"2-(186)656-2752"},
-{"id":35,"first_name":"Susan","last_name":"Stewart","email":"sstewarty@vk.com","country":"Mexico","job_title":"Environmental Tech","phone":"8-(610)640-1810"},
-{"id":36,"first_name":"Sean","last_name":"Palmer","email":"spalmerz@topsy.com","country":"Azerbaijan","job_title":"Account Representative IV","phone":"9-(991)340-0096"},
-{"id":37,"first_name":"Shawn","last_name":"Stewart","email":"sstewart10@illinois.edu","country":"Russia","job_title":"Assistant Professor","phone":"9-(765)989-3396"},
-{"id":38,"first_name":"Christina","last_name":"Riley","email":"criley11@dell.com","country":"China","job_title":"Speech Pathologist","phone":"6-(150)765-5140"},
-{"id":39,"first_name":"Sara","last_name":"Rivera","email":"srivera12@godaddy.com","country":"Hungary","job_title":"Biostatistician III","phone":"6-(598)650-7148"},
-{"id":40,"first_name":"Kathleen","last_name":"Cunningham","email":"kcunningham13@wunderground.com","country":"China","job_title":"Cost Accountant","phone":"6-(709)685-4442"},
-{"id":41,"first_name":"Alan","last_name":"Williams","email":"awilliams14@lulu.com","country":"United States","job_title":"Senior Cost Accountant","phone":"5-(108)047-6344"},
-{"id":42,"first_name":"Gloria","last_name":"Mcdonald","email":"gmcdonald15@meetup.com","country":"Bulgaria","job_title":"Actuary","phone":"6-(761)416-7713"},
-{"id":43,"first_name":"Harold","last_name":"Stanley","email":"hstanley16@google.com","country":"Mauritania","job_title":"Environmental Specialist","phone":"4-(811)337-5096"},
-{"id":44,"first_name":"Margaret","last_name":"Ramos","email":"mramos17@mashable.com","country":"Philippines","job_title":"Programmer I","phone":"3-(781)969-4309"},
-{"id":45,"first_name":"Debra","last_name":"Elliott","email":"delliott18@ox.ac.uk","country":"China","job_title":"Graphic Designer","phone":"1-(961)307-3517"},
-{"id":46,"first_name":"Ann","last_name":"Bailey","email":"abailey19@icio.us","country":"Mongolia","job_title":"Dental Hygienist","phone":"4-(519)154-4173"},
-{"id":47,"first_name":"Alice","last_name":"Washington","email":"awashington1a@deliciousdays.com","country":"Yemen","job_title":"Budget/Accounting Analyst III","phone":"4-(243)994-8127"},
-{"id":48,"first_name":"Donna","last_name":"Reynolds","email":"dreynolds1b@microsoft.com","country":"Indonesia","job_title":"Actuary","phone":"3-(512)801-9040"},
-{"id":49,"first_name":"John","last_name":"Daniels","email":"jdaniels1c@jimdo.com","country":"Poland","job_title":"Geologist II","phone":"5-(502)052-3630"},
-{"id":50,"first_name":"Andrew","last_name":"Moreno","email":"amoreno1d@usda.gov","country":"Italy","job_title":"Senior Quality Engineer","phone":"6-(164)401-4364"}];
-
-var unitList =[{"unit_id":1,"unit_type":"ECG","unit_number":"97-AC-D1-8E-D2-A8","status":"green","assign_patient":"M","ip_address":"242.223.250.112"},
-{"unit_id":2,"unit_type":"EEG","unit_number":"E6-44-B9-E8-46-ED","status":"red","assign_patient":"x","ip_address":"155.53.24.132"},
-{"unit_id":3,"unit_type":"ECG","unit_number":"B6-2C-07-16-1A-43","status":"green","assign_patient":"x","ip_address":"184.49.240.183"},
-{"unit_id":4,"unit_type":"ECG","unit_number":"3C-8C-46-49-2A-37","status":"red","assign_patient":"x","ip_address":"165.134.76.137"},
-{"unit_id":5,"unit_type":"ECG","unit_number":"82-AB-F1-8D-B4-20","status":"amber","assign_patient":"x","ip_address":"182.137.219.20"},
-{"unit_id":6,"unit_type":"EEG","unit_number":"42-16-E9-E1-AC-5B","status":"red","assign_patient":"x","ip_address":"234.154.243.21"},
-{"unit_id":7,"unit_type":"ECG","unit_number":"7D-44-C6-4B-BE-EC","status":"green","assign_patient":"x","ip_address":"19.238.18.182"},
-{"unit_id":8,"unit_type":"ECG","unit_number":"39-7C-05-B8-A7-9F","status":"red","assign_patient":"x","ip_address":"59.26.150.106"},
-{"unit_id":9,"unit_type":"ECG","unit_number":"82-E2-F0-1C-F5-FA","status":"red","assign_patient":"x","ip_address":"131.120.205.55"},
-{"unit_id":10,"unit_type":"EEG","unit_number":"88-61-96-71-CB-87","status":"red","assign_patient":"x","ip_address":"60.221.56.235"},
-{"unit_id":11,"unit_type":"EEG","unit_number":"FF-61-96-3D-CB-8C","status":"red","assign_patient":"x","ip_address":"60.221.56.235"}];
-
-var fadeTime = 1000;
-
-
-
-
-function setPatientsTable(divIn)
+var intervalId;
+var fadeTime = 500;
+var patientFiles = "";
+getPatientFiles();
+//alert(patientFiles );
+function setPatientTable(divIn,patientList,patientFiles)
 {
-
+	var dropDown = "";
+	//create File drop down from list
+	dropDown += ("<select id='unitlive' onChange='onFileSelectChange(this);'><option value = 'null'> Choose File </option>");
+	for (var i in patientList) 
+	{
+		for(var j in patientFiles)
+		{
+		dropDown +=("<option value="+ patientList[i].patient_id+">"+ patientList[i].last_name+" "+ patientList[i].first_name+"</option>");
+		}
+		
+	}
+	dropDown += ("</select>");
 
 	$(divIn).empty();
 	var out = ("\
 		<div id='tableBody' class ='datagrid' value = '"+$(divIn).val()+"'>\
 		<table id = 'tablePatientsx'>\
 		<thead>\
-		<tr class = 'seperator'>\
-			 <th class = 'seperator' colspan = '7' style=' background-color:#1E90FF; border-color:#1E90FF; color:#ffffff;'>Patients</th>\
+		<tr id = 'seperatortr' class = 'seperator'>\
+			 <th class = 'seperator' colspan = '5' style='  color:#ffffff;'>Patients</th>\
 			 </tr>\
 		</thead>\
-			<thead>\
+			<thead id = 'seperatorth'>\
 			  <tr>\
-			  <th>Patient Id</th>\
+			  <th>Reference</th>\
 			  <th>First Name</th>\
 			  <th>Last Name</th>\
-			  <th>Email</th>\
-			  <th>Country</th>\
-			  <th>Job Title</th>\
-			  <th>Phone</th>\
+			  <th>Insert Date</th>\
+			  <th>Patient FIles</th>\
 			  </tr>\
 			</thead>\
 			</table>\
@@ -97,27 +43,35 @@ function setPatientsTable(divIn)
 			
 			out +=("\
 			  <tr>\
-			  <td></td>\
 			  <td class = 'wrap'></td>\
 			  <td class = 'wrap'></td>\
 			  <td class = 'wrap'></td>\
-			  <td class = 'wrap'></td>\
-			  <td class = 'wrap'></td>\
-			  <td  class = 'wrap' style = 'width:auto;' ></td>\
+			  <td  class = 'titleBlue' ></td>\
+			  <td  class = 'titleBlue' style = 'width:auto;' ></td>\
 			  </tr>\
 			 ");
 			 
 	for (var i in patientList) 
 	{
+	
+		var dropDown = "";
+		dropDown += ("<select id='"+patientList[i].patient_id+"' onChange='onFileSelectChange(this);'> <option value = 'null'> Choose File </option>");
+		for(var j in patientFiles)
+		{
+			if(patientList[i].patient_id == patientFiles[j].patient_id)
+			{
+				dropDown +=("<option value="+ patientFiles[j].patient_file_id+">Id: "+ patientFiles[j].patient_file_id+" "+ patientFiles[j].save_date+"</option>");
+			}
+		}
+		dropDown += ("</select>");
+		
 		out +=("\
-			  <tr>\
-			  <td  class = 'titleBlue' >" + patientList[i].id+ "</td>\
-			  <td class = 'titleBlue'>" + patientList[i].first_name+"</td>\
-			  <td class = 'titleBlue' >" + patientList[i].last_name+"</td>\
-			  <td class = 'wrap'>" + patientList[i].email+ "</td>\
-			  <td class = 'wrap' >" + patientList[i].country+ "</td>\
-			  <td class = 'wrap' >" + patientList[i].job_title+ "</td>\
-			  <td  class = 'wrap' style = 'width:auto;' >" + patientList[i].phone+ "</td>\
+			  <tr id = '"+patientList[i].patient_id+ "'>\
+			  <td  class = 'wrap' >" + patientList[i].patient_reference+ "</td>\
+			  <td class = 'wrap'>" + patientList[i].first_name+"</td>\
+			  <td class = 'wrap' >" + patientList[i].last_name+"</td>\
+			  <td  class = 'titleBlue' >" + patientList[i].create_date+ "</td>\
+			  <td  class = 'titleBlue' style = 'width:auto;' >"+dropDown+"</td>\
 			  </tr>\
 			 ");
 	}
@@ -137,197 +91,298 @@ function setPatientsTable(divIn)
 	
 }
 
-
-
-function setUnitTable(divIn)
-{
-	var count = Object.keys(unitList[0]).length
-
-
-	$(divIn).empty();
-	var out = ("\
-		<div id='tableBody' class ='datagrid' value = '"+$(divIn).val()+"'>\
-		<table id = 'anytablex'>\
-		<thead>\
-		<tr class = 'seperator'>\
-			 <th class = 'seperator' colspan = '"+count+"' style=' background-color:#1E90FF; border-color:#1E90FF; color:#ffffff;'>Patients</th>\
-			 </tr>\
-		</thead>\
-			<thead>\
-			  <tr>");
-			  for(var i = 0; i < count; i++)
-			  {
-					var arr =  Object.keys(unitList[0]);
-					var x = splitKey(arr[i]);
-					out +=("<th>"+x+"</th>");
-
-			  }
-			  out +=("\
-			  </tr>\
-			</thead>\
-			</table>\
-			<div style='overflow-y:scroll; overflow-x:hidden; max-height:400px; width:auto;'>\
-			<table id = 'anytable'>\
-			<tbody>");
-			
-			out +=("\
-			  <tr>\
-			  <td ></td>\
-			  <td ></td>\
-			  <td class = 'wrap'></td>\
-			  <td '></td>\
-			  <td></td>\
-			  <td  style = 'width:auto;' ></td>\
-			  </tr>\
-			 ");
-
-				    for(var i=0; i < unitList.length; i++)
-					{
-						var obj = unitList[i];
-						out +=("<tr>");
-							for(var key in obj)
-							{
-								var attrName = key;
-								var attrValue = obj[key];
-								out += ("<td class = 'wrap'>" +attrValue+ "</td>");		
-							}
-							out += ("<td class = 'wrap'> </td>");
-						out +=("</tr>");	
-					}
-					
-			out += ("</tbody>\
-			</table>\
-			</div>\
-			</div>\
-			<div id ='gif'><img id = 'anigif' src = ../static/Images/ani.png /></div>\
-			");
-		$(divIn).hide();
-		$(divIn).append(out);
-		$(divIn).fadeIn(fadeTime);
-		
-		setTableHover();
-		unitTableFormWork('#anytable',4, unitList);
-	
-}
-
-function setAnyTable(divIn)
-{
-
-	var count = Object.keys(patientList[0]).length
-
-
-	$(divIn).empty();
-	var out = ("\
-		<div id='tableBody' class ='datagrid' value = '"+$(divIn).val()+"'>\
-		<table id = 'anytablex'>\
-		<thead>\
-		<tr class = 'seperator'>\
-			 <th class = 'seperator' colspan = '"+count+"' style=' background-color:#1E90FF; border-color:#1E90FF; color:#ffffff;'>Patients</th>\
-			 </tr>\
-		</thead>\
-			<thead>\
-			  <tr>");
-			  for(var i = 0; i < count; i++)
-			  {
-					var arr =  Object.keys(patientList[0]);
-					var x = splitKey(arr[i]);
-					out +=("<th>"+x+"</th>");
-
-			  }
-			  out +=("\
-			  </tr>\
-			</thead>\
-			</table>\
-			<div style='overflow-y:scroll; overflow-x:hidden; max-height:400px; width:auto;'>\
-			<table id = 'anytable'>\
-			<tbody>");
-			
-			out +=("\
-			  <tr>\
-			  <td class = 'wrap'></td>\
-			  <td class = 'wrap'></td>\
-			  <td class = 'wrap'></td>\
-			  <td class = 'wrap'></td>\
-			  <td class = 'wrap'></td>\
-			  <td class = 'wrap'></td>\
-			  <td  class = 'wrap' style = 'width:auto;' ></td>\
-			  </tr>\
-			 ");
-
-				    for(var i=0; i < patientList.length; i++)
-					{
-						var obj = patientList[i];
-						out +=("<tr>");
-							for(var key in obj)
-							{
-								var attrName = key;
-								var attrValue = obj[key];
-								out += ("<td class = 'wrap'>" +attrValue+ "</td>");		
-							}
-						out +=("</tr>");	
-					}
-					
-			out += ("</tbody>\
-			</table>\
-			</div>\
-			</div>\
-			");
-		$(divIn).hide();
-		$(divIn).append(out);
-		$(divIn).fadeIn(fadeTime);
-		
-		setTableHover();
-		tableFormWork('#anytable',4);	
-}
-
-function splitKey(s)
-{
-	var arr = s.split("_");
-	var out = "";
-	for(var i = 0; i < arr.length; i++)
-	{
-		var x = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-		out += x + " ";
-	}
-	return out;
-}
-
-function unitTableFormWork(table, pos, file)
+function tableFormWork(table, pos)
 {
     var $tables = $(table);
 	var $tablex = "#"+$(table).attr('id')+"x";
 	var head = $($tablex);//head is needed for .find() function
 	var firstCol = 1;
-	var dropDown = "";
 	
+  
+  $(table).each(function () 
+  {
+	var table = $(this);
+  
+	head.find('thead tr').not('.seperator').append($('<th class="edit"><span class="validate">Options</span></th>'));
+	table.find('thead tr').not('.seperator').append($('<th class="edit">3 </th>'));
+	table.find('thead tr').not('.seperator').append($('<th class="edit">4 </th>'));
+    table.find('tbody tr:first').not('.seperator').append($('<td class="edit"><img id = "add" class = "btnE" src="../static/Images/addGreen.png" data = "true"/><img class = "btnV"  src="../static/Images/empty.png" /></td>'));
+	table.find('tbody tr').not('tbody tr:first').not('.seperator').append($('<td class="edit"><img id = "edit" class = "btnE"   src="../static/Images/editGreen60.png" data = "true"/><img class = "btnD"  src="../static/Images/deleteRed.png" /></td>'));
+	table.find('tr.seperator').append($('<th class="seperator" style=" background-color:#006699; border-color:#006699;"></th>'));
+
+	head.find('tr.seperator').append($('<th class="seperator" style=" border-color:rgba(0,97,191,0.4);"></th>'));
+  });
+  
+  // make table long in width
+  var divTableWidth = $('.divTable').width();
+  var datagridWidth = $('#tableBody').width();
+  var excess = divTableWidth - datagridWidth;
+
+  $(table).find('tbody tr td:nth-child('+pos+')').css('width', excess+'px');
+   
+  head.find( 'th').not('th.seperator').each(function () 
+  {
+	var w = $(table).find("tbody tr td:nth-child("+firstCol+")").width();
+	$(this).css('width', w);
+	firstCol ++;
+		
+  });
+
+  $(table).find('.edit .btnE').live('click', function(e) 
+  {
+		tableEditable(this);
+		e.preventDefault();
+  });
+  
+  $(table).find('.edit .btnEtoSave').live('click', function(e) 
+	{
+		var input = [];
+		var mess = [];
+		var $button = $(this);
+		var $row = $button.parents('tbody tr');
+		var $cells = $row.children('td.wrap').not('.edit');
+		tableEditable(this);
+		
+		if( $(this).attr('id') == 'add')
+		{
+			
+			$cells.each(function () {
+				var cell = $(this);
+				input.push(cell.text());
+
+			})
+			
+			js1 = new Object()
+			js1.reference = input[0];
+			js1.first_name = input[1];
+			js1.last_name = input[2];
+			mess.push(js1);
+			var toCloud = JSON.stringify(js1);
+			var r = confirm("Do you want to add "+input[1]+" "+input[2]+"to the patients file.?");
+			if (r == true) 
+			{		
+				addToPatientTable(toCloud);
+
+			}
+			else
+			{
+				
+			}	
+			
+		}
+		
+		if( $(this).attr('id') == 'edit')
+		{
+			 
+			$cells.each(function () {
+				var cell = $(this);
+				input.push(cell.text());
+
+			})
+			input.push($row.attr('id'));
+			
+			js1 = new Object()
+			js1.reference = input[0];
+			js1.first_name = input[1];
+			js1.last_name = input[2];
+			js1.id = input[3];
+			mess.push(js1);
+			var toCloud = JSON.stringify(js1);
+			var r = confirm("Do you want to edit "+input[1]+" "+input[2]+"in the patients file.?");
+			if (r == true) 
+			{	
+
+				editPatientTable(toCloud);
+			}
+			else
+			{
+				
+			}	
+			
+		}
+		e.preventDefault();
+	});
+  
+  $(table).find('.edit .btnEsaved').live('click', function(e) 
+	{
+		tableEditable(this);
+		e.preventDefault();
+	});
+  
+  $(table).find('.edit .btnV').live('click', function(e) 
+	{
+		tableVerify(this);
+		e.preventDefault();
+  });
+	$(table).find('.edit .btnVx').live('click', function(e) 
+	{
+		tableVerify(this);
+		e.preventDefault();
+  });
+    $(table).find('.edit .btnD').live('click', function(e) 
+	{
+		var input = [];
+		var mess = [];
+		var $button = $(this);
+		var $row = $button.parents('tbody tr');
+		var rowClass = $row.attr('class'); 
+		$row .addClass('allRed');
+
+		input.push($row.attr('id'));
+			
+		js1 = new Object()
+		js1.id = input[0];
+		mess.push(js1);
+		var toCloud = JSON.stringify(js1);
+			
+		var r = confirm("Do you want to delete this Record?");
+		if (r == true) 
+			{
+				deletePatientTable(toCloud);
+			} 
+			else 
+			{
+				$row .removeClass('allRed');
+			}
+		e.preventDefault();
+  });
+  
+	$(table).find('.edit .btnDx').live('click', function(e) 
+	{
+		tableVerify(this);
+		e.preventDefault();
+  });
+  
+  $('.verifyCheck').change(function(e) 
+  {
+  
+    if(this.checked)
+	{
+		tableVerifyAll(table);
+	}
+	else
+	{
+		tableVerifyNone(table);
+	}
+    e.preventDefault();
+  });
+  
+  $(table).css('overflow-y', 'scroll');
+  }
+
+
+
+function setUnitTable(divIn, unitList)
+{
+
+	var status = "green";
+	var patientList = getPatientList();
+	$(divIn).empty();
+	var out = ("\
+		<div id='tableBody' class ='datagrid' value = '"+$(divIn).val()+"'>\
+		<table id = 'anytablex'>\
+		<thead>\
+		<tr id = 'seperatortr' class = 'seperator'>\
+			 <th class = 'seperator' colspan = '4' style='color:#ffffff;'>Units</th>\
+			 </tr>\
+		</thead>\
+			<thead id = 'seperatorth'>\
+			  <tr>\
+			  <th>Unit Type</th>\
+			  <th>Unit Number</th>\
+			  <th>Status</th>\
+			  <th>Assign Patient</th>\
+			  </tr>\
+			</thead>\
+			</table>\
+			<div style='overflow-y:scroll; overflow-x:hidden; max-height:400px; width:auto;'>\
+			<table id = 'anytable'>\
+			<tbody>");
+			
+	for (var i in unitList) 
+		{
+			if(unitList[i].unit_online == 1){status = "green";}
+			if(unitList[i].unit_online == 0){status = "red";}
+			if(unitList[i].unit_record == 1){status = "amber";}
+			out +=("\
+				  <tr id = '"+unitList[i].unit_id+ "'>\
+				  <td  class = 'wrap' >" + unitList[i].unit_type+ "</td>\
+				  <td  class = 'wrap' >" + unitList[i].unit_number+ "</td>\
+				  <td class = 'wrap'>" +status+"</td>\
+				  <td  class = 'titleBlue' style = 'width:auto;' ></td>\
+				  <td class = 'wrap'> </td>\
+				  </tr>\
+				 ");
+		}
+					
+			out += ("</tbody>\
+			</table>\
+			</div>\
+			</div>\
+			<div id ='gif'><img id = 'anigif' src = ../static/Images/ani.png />\
+			<p id ='bpm'>BPM = 0</p>\
+			");
+		$(divIn).hide();
+		$(divIn).append(out);
+		$(divIn).fadeIn(10);
+		setTableHover();
+		unitTableFormWork('#anytable',4, unitList, patientList);
+	
+}
+
+function unitTableFormWork(table, pos, file, patientList)
+{
+	
+    var $tables = $(table);
+	var $tablex = "#"+$(table).attr('id')+"x";
+	var head = $($tablex);//head is needed for .find() function
+	var firstCol = 1;
+	var dropDown = "";
 	//create patient drop down from list
-	dropDown += ("<select><option value = 'null'> Assign Patient </option>");
+	dropDown += ("<select id='unitlive' onChange='onPatientSelectChange(this);'><option value = 'null'> Assign Patient </option>");
 		for (var i in patientList) 
 	{
-		dropDown +=("<option value="+ patientList[i].last_name+" "+ patientList[i].first_name+">"+ patientList[i].last_name+" "+ patientList[i].first_name+"</option>");
+
+		dropDown +=("<option value="+ patientList[i].patient_id+">"+ patientList[i].last_name+" "+ patientList[i].first_name+"</option>");
+		
 	}
 	dropDown += ("</select>");
 
 		$('#anytable tr').each(function() {
-			var out = $(this).find("td").eq(3).html();
+			var out = $(this).find("td").eq(2).html();
 			if (out =='green')
 			{
-				$(this).find("td").eq(3).text("");
-				$(this).find("td").eq(3).append($('<td class="unitstatus"><img class = "traffic"   src="../static/Images/online2.png" data = "green"/></td>'));
-				$(this).find("td").eq(5).text("");
-				$(this).find("td").eq(5).append($(dropDown));
+				$(this).find("td").eq(2).text("");
+				$(this).find("td").eq(2).append($('<td class="unitstatus"><img class = "traffic"   src="../static/Images/online2.png" data = "green"/></td>'));
+				$(this).find("td").eq(4).text("");
+				$(this).find("td").eq(4).append($(dropDown));
 				//$(this).find("td").eq(6).text("");
-				$(this).find("td").eq(7).append($('<td class="unitcontrol"><img class = "btnP" src="../static/Images/play.png" data = "false"/><img class = "btnS"  src="../static/Images/stop.png" data = "false" /><img class = "btnR"  src="../static/Images/rec.png" data = "false" /></td>'));
+				$(this).find("td").eq(5).append($('<td class="unitcontrol"><img class = "btnP" src="../static/Images/play.png" data = "false"/><img class = "btnS"  src="../static/Images/stop.png" data = "false" /><img class = "btnR"  src="../static/Images/rec.png" data = "false" /></td>'));
 			}
 			if (out =='amber')
 			{
-				$(this).find("td").eq(3).text("");
-				$(this).find("td").eq(3).append($('<td class="unitstatus"><img class = "traffic"   src="../static/Images/online-record2.png" data = "amber"/></td>'));
+				$(this).find("td").eq(2).text("");
+				$(this).find("td").eq(2).append($('<td class="unitstatus"><img class = "traffic"   src="../static/Images/online-record2.png" data = "amber"/></td>'));
+				for (var i in patientList)
+				{
+					for(var j in file)
+					{
+						
+						if(patientList[i].patient_id == file[j].unit_allocated_to)
+						{
+							$(this).find("td").eq(4).text("");
+							$(this).find("td").eq(4).append(patientList[i].last_name+" "+ patientList[i].first_name);
+						}
+						
+					}
+				}
+				$(this).find("td").eq(5).text("");
+				$(this).find("td").eq(5).append($('<td class="unitcontrol"><img class = "btnP" src="../static/Images/play.png" data = "false"/><img class = "btnS"  src="../static/Images/stop.png" data = "false" /><img class = "btnR"  src="../static/Images/rec.png" data = "false" /></td>'));
 			}
 			if (out =='red')
 			{
-				$(this).find("td").eq(3).text("");
-				$(this).find("td").eq(3).append($('<td class="unitstatus"><img class = "traffic"   src="../static/Images/offline2.png" data = "red"/></td>'));
+				$(this).find("td").eq(2).text("");
+				$(this).find("td").eq(2).append($('<td class="unitstatus"><img class = "traffic"   src="../static/Images/offline2.png" data = "red"/></td>'));
 			}
 		});
 		  
@@ -340,11 +395,10 @@ function unitTableFormWork(table, pos, file)
 	table.find('thead tr').not('.seperator').append($('<th class="edit">3 </th>'));
 	table.find('thead tr').not('.seperator').append($('<th class="edit">4 </th>'));
 	table.find('thead tr').not('.seperator').append($('<th class="edit">4 </th>'));
-    table.find('tbody tr:first').not('.seperator').append($('<td class="edit"><img class = "btnE" src="../static/Images/addGreen.png" data = "true"/><img class = "btnV"  src="../static/Images/empty.png" /></td>'));
-	//table.find('tbody tr').not('tbody tr:first').not('.seperator').append($('<td class="edit"><img class = "btnE"   src="../static/Images/editGreen60.png" data = "true"/><img class = "btnD"  src="../static/Images/deleteRed.png" /></td>'));
-	table.find('tr.seperator').append($('<th class="seperator" style=" background-color:#006699; border-color:#006699;"></th>'));
 
-	head.find('tr.seperator').append($('<th class="seperator" style=" background-color:#1E90FF; border-color:#1E90FF;"></th>'));
+	table.find('tr.seperator').append($('<th class="seperator" style=" border-color:#006699;"></th>'));
+
+	head.find('tr.seperator').append($('<th class="seperator" style="  border-color:#1E90FF;"></th>'));
   });
   
   // make table long in width
@@ -364,183 +418,207 @@ function unitTableFormWork(table, pos, file)
   
   	$(table).find('.btnP').live('click', function(e) 
 	{
-		out = ("<img id = 'anigif' src = ../static/Images/anigif.gif />");
-		$('#gif').hide();
-		$('#gif').empty();
-		$('#gif').prepend(out);
-		$('#gif').fadeIn(fadeTime);
-		e.preventDefault();
-	});
-
-
-
-  $(table).find('.btnE').live('click', function(e) 
-  {
-		tableEditable(this);
-		e.preventDefault();
-  });
-  
-  $(table).find('.btnEtoSave').live('click', function(e) 
-	{
-		tableEditable(this);
-		e.preventDefault();
-	});
-  
-  $(table).find('.btnEsaved').live('click', function(e) 
-	{
-		tableEditable(this);
-		e.preventDefault();
-	});
-  
-  $(table).find('.btnV').live('click', function(e) 
-	{
-		tableVerify(this);
-		e.preventDefault();
-  });
-	$(table).find('.btnVx').live('click', function(e) 
-	{
-		tableVerify(this);
-		e.preventDefault();
-  });
-    $(table).find('.btnD').live('click', function(e) 
-	{
-
-		var r = confirm("Do you want to delete this Record?");
-		if (r == true) 
+		clearInterval(intervalId);
+		var mess =[];
+		var $button = $(this);
+		var $cell = $button.parents('tbody tr td');
+		var $row = $button.parents('tbody tr');
+		var id = $row.attr('id');
+		for(var i in file)
+		{
+			if (id == file[i].unit_id)
 			{
-				tableDelete(this);
-			} 
-			else 
-			{
-				
+				$('#gif').empty();
+				out = "<img id = 'anigif' src = ../static/Images/anigif2.gif /><p id ='bpm'>Unit Number "+file[i].unit_number+"<br/>BPM = "+file[i].unit_beat+"</p>";
+				$('#gif').append(out);
+				js1 = new Object()
+				js1.id = file[i].unit_id;
+				mess.push(js1);
+				var toCloud = JSON.stringify(js1);
+				setPlay(toCloud);
+	
 			}
+		}
+		intervalId = setInterval(function() {
+			repeat(id);
+		}, 3000);
+
+		
 		e.preventDefault();
-  });
-	$(table).find('.btnDx').live('click', function(e) 
+	});
+	
+	$(table).find('.btnR').live('click', function(e) 
 	{
-		tableVerify(this);
+
+		var mess =[];
+		var $button = $(this);
+		var $cell = $button.parents('tbody tr td');
+		var $row = $button.parents('tbody tr');
+		var patient_id =  $row.find('>:first-child').attr('id');
+		var id = $row.attr('id');
+		if(isAllocated(id))
+		{
+			for(var i in file)
+			{
+				if (id == file[i].unit_id)
+				{
+				
+					js1 = new Object()
+					js1.id = file[i].unit_id;
+					mess.push(js1);
+					var toCloud = JSON.stringify(js1);
+					setRecord(toCloud);
+					for (var i in patientList) 
+					{
+						if(patientList[i].patient_id == patient_id)
+						{
+							$row.find("td").eq(4).text("");
+							$row.find("td").eq(4).append(patientList[i].last_name+" "+ patientList[i].first_name);
+						}
+						
+					}
+		
+				}
+			}
+		}
+		else{alert("You must allocate Patient first!");}
+		
 		e.preventDefault();
-  });
-  
-  $('.verifyCheck').change(function(e) 
-  {
-  
-    if(this.checked)
+	});
+	
+	$(table).find('.btnS').live('click', function(e) 
 	{
-		tableVerifyAll(table);
-	}
-	else
-	{
-		tableVerifyNone(table);
-	}
-    e.preventDefault();
-  });
+
+		var mess =[];
+		var $button = $(this);
+		var $cell = $button.parents('tbody tr td');
+		var $row = $button.parents('tbody tr');
+		var id = $row.attr('id');
+		for(var i in file)
+		{
+			if (id == file[i].unit_id)
+			{
+				js1 = new Object()
+				js1.id = file[i].unit_id;
+				mess.push(js1);
+				var toCloud = JSON.stringify(js1);
+				setStop(toCloud);
+			}
+		}
+		
+		e.preventDefault();
+	});
+
   
   $(table).css('overflow-y', 'scroll');
   }
 
+function setAnyTable(divIn,data,tablename)
+{
 
-function tableFormWork(table, pos)
+	var count = Object.keys(data[0]).length
+
+
+	$(divIn).empty();
+	var out = ("\
+		<div id='tableBody' class ='datagrid' value = '"+$(divIn).val()+"'>\
+		<table id = 'anytablex'>\
+		<thead>\
+		<tr id = 'seperatortr'>\
+			 <th  colspan = '"+count+"'>"+tablename+"</th>\
+			 </tr>\
+		</thead>\
+			<thead id = 'seperatorth'>\
+			  <tr >");
+			  for(var i = 0; i < count; i++)
+			  {
+					var arr =  Object.keys(data[0]);
+					var x = splitKey(arr[i]);
+					out +=("<th id ='top"+i+"x'>"+x+"</th>");
+
+			  }
+			  out +=("\
+			  </tr>\
+			</thead>\
+			</table>\
+			<div style='overflow-y:scroll; overflow-x:hidden; max-height:400px; width:auto;'>\
+			<table id = 'anytable'>\
+			<tbody>");
+			
+			out +=("<tr class ='bottom'>");
+				for(var i=0; i < data.length; i++)
+				{
+					var obj = data[i];
+					out +=("<tr>");
+						for(var key in obj)
+						{
+							var attrName = key;
+							var attrValue = obj[key];
+							out += ("<td  class = 'wrap'>" +attrValue+ "</td>");		
+						}
+					out +=("</tr>");	
+				}
+					
+			out += ("</tbody>\
+			</table>\
+			</div>\
+			</div>\
+			");
+
+		$(divIn).hide();
+		$(divIn).append(out);
+		$(divIn).fadeIn(fadeTime);
+		$('.wrap').css('height', '25px');
+		
+		// Correct table header difference
+		var topWidth = 0;
+		var bottomWidth = 0;
+		for(var i = 0; i < count; i++)
+		{
+			var domselect = "#top"+i+"x"
+			bottomWidth = $('#anytable').find('tbody tr td:nth-child('+(i+1)+')').width();
+			topWidth = $(domselect).width();
+			if( topWidth < bottomWidth)
+			{
+				$(domselect).css('width', bottomWidth+"px");
+			}
+		}
+		
+		setTableHover();	
+}
+
+function anyTableFormWork(table, pos)
 {
     var $tables = $(table);
 	var $tablex = "#"+$(table).attr('id')+"x";
 	var head = $($tablex);//head is needed for .find() function
 	var firstCol = 1;
-	
-  
-  $(table).each(function () 
-  {
-	var table = $(this);
-  
-	head.find('thead tr').not('.seperator').append($('<th class="edit"><span class="validate">Options</span></th>'));
-	table.find('thead tr').not('.seperator').append($('<th class="edit">3 </th>'));
-	table.find('thead tr').not('.seperator').append($('<th class="edit">4 </th>'));
-    table.find('tbody tr:first').not('.seperator').append($('<td class="edit"><img class = "btnE" src="../static/Images/addGreen.png" data = "true"/><img class = "btnV"  src="../static/Images/empty.png" /></td>'));
-	table.find('tbody tr').not('tbody tr:first').not('.seperator').append($('<td class="edit"><img class = "btnE"   src="../static/Images/editGreen60.png" data = "true"/><img class = "btnD"  src="../static/Images/deleteRed.png" /></td>'));
-	table.find('tr.seperator').append($('<th class="seperator" style=" background-color:#006699; border-color:#006699;"></th>'));
 
-	head.find('tr.seperator').append($('<th class="seperator" style=" background-color:#1E90FF; border-color:#1E90FF;"></th>'));
-  });
-  
-  // make table long in width
-  var divTableWidth = $('.divTable').width();
-  var datagridWidth = $('#tableBody').width();
-  var excess = divTableWidth - datagridWidth;
+	// make table long in width
+	var divTableWidth = $('.divTable').width();
+	var datagridWidth = $('#tableBody').width();
+	var excess = divTableWidth - datagridWidth;
 
-  $(table).find('tbody tr td:nth-child('+pos+')').css('width', excess+'px');
-   
-  head.find( 'th').not('th.seperator').each(function () 
-  {
-	var w = $(table).find("tbody tr td:nth-child("+firstCol+")").width();
-	$(this).css('width', w);
-	firstCol ++;
-		
-  });
-
-  $(table).find('.btnE').live('click', function(e) 
-  {
-		tableEditable(this);
-		e.preventDefault();
-  });
-  
-  $(table).find('.btnEtoSave').live('click', function(e) 
-	{
-		tableEditable(this);
-		e.preventDefault();
-	});
-  
-  $(table).find('.btnEsaved').live('click', function(e) 
-	{
-		tableEditable(this);
-		e.preventDefault();
-	});
-  
-  $(table).find('.btnV').live('click', function(e) 
-	{
-		tableVerify(this);
-		e.preventDefault();
-  });
-	$(table).find('.btnVx').live('click', function(e) 
-	{
-		tableVerify(this);
-		e.preventDefault();
-  });
-    $(table).find('.btnD').live('click', function(e) 
-	{
-
-		var r = confirm("Do you want to delete this Record?");
-		if (r == true) 
-			{
-				tableDelete(this);
-			} 
-			else 
-			{
-				
-			}
-		e.preventDefault();
-  });
-	$(table).find('.btnDx').live('click', function(e) 
-	{
-		tableVerify(this);
-		e.preventDefault();
-  });
-  
-  $('.verifyCheck').change(function(e) 
-  {
-  
-    if(this.checked)
-	{
-		tableVerifyAll(table);
-	}
-	else
-	{
-		tableVerifyNone(table);
-	}
-    e.preventDefault();
-  });
-  
-  $(table).css('overflow-y', 'scroll');
+	$(table).find('tbody tr td:last-child').css('width', excess+'px');
+	if( $('.top').width() < $('.bottom').width())
+		{
+			$('.top').css('width', $('.bottom').css(width));
+		}
+	$(table).css('overflow-y', 'scroll');
+	$('.wrap').css('height', '30px');
   }
+
+function splitKey(s)
+{
+	var arr = s.split("_");
+	var out = "";
+	for(var i = 0; i < arr.length; i++)
+	{
+		var x = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+		out += x + " ";
+	}
+	return out;
+}
 
 
 function tableEditable(button) 
@@ -554,8 +632,8 @@ function tableEditable(button)
 	  if($row.data('flag'))
 	  { 
 		$cells.each(function () {
-		var cell = $(this);
-		cell.html(cell.find('input').val());
+			var cell = $(this);
+			cell.html(cell.find('input').val());
 	  })
 		
 		$row.data('flag',false);
@@ -658,6 +736,7 @@ function setBodyPos(divIn)
 function setTableHover()
 {
 	$('#tableBody tbody tr:even').addClass('alt');
+	$('#tableBody tbody tr:odd').addClass('oddalt');
 		$('#tableBody tbody tr').hover(function()
 		{ 
 			$(this).addClass('altHover'); 
@@ -673,3 +752,499 @@ function renderBugFix()
 	$(window).resize();
 	
   }
+  
+///////////////////////////////////////////Cloud Calls///////////////////////////////////////////
+
+var globalId = 0;
+
+function getPatientFiles()
+{
+	var datax = "";
+	$(function() {
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: '/getpatientfiles',
+			data: { name: 'n/a'},
+			success:function( response ) {
+			patientFiles= $.parseJSON(response);
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+
+}
+function getAdminOrgTable(divIn,tablename)
+{
+	UnitCheck == false;
+	$(function() {
+
+        $.ajax({
+            url: '/adminorgtable',
+            type: 'POST',
+			data: 'json',
+            success: function(response) {
+                console.log(response);
+				var data = $.parseJSON(response);
+				setAnyTable(divIn,data,tablename);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+   
+	});
+}
+  
+function getAdminSigTable(divIn,tablename)
+{
+	$(function() {
+
+        $.ajax({
+            url: '/adminsigtable',
+            type: 'POST',
+			data: 'json',
+            success: function(response) {
+				var data = $.parseJSON(response);
+				setAnyTable(divIn,data,tablename);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+   
+	});
+}
+  
+function addOrgSelection(divIn)
+{	
+	$(function() {
+
+        $.ajax({
+            url: '/organisationselect',
+            type: 'POST',
+			data: 'json',
+            success: function(response) {
+                console.log(response);
+				var data = $.parseJSON(response);
+				var out = ("\
+					<div id = 'orgselect' class='login-card'>\
+					<form>\
+					<p><h3>Select Organisation for full unit functionality</h3></p>\
+					<select id='developer' onChange='onOrgSelectChange(this);'>");
+					for( i in data)
+					{
+						out += "<option value='"+data[i].Name+"'>"+data[i].Name+"</option>";
+
+					}
+				out+= "</select></form></div>";
+				$(divIn).append(out);
+				$('#orgselect').css('background-color', 'rgba(0,97,191,0.8)');
+				$('#orgselect').css('color', '#E7E5E5');
+				$('#orgselect').css('width', '200px');
+				$('#orgselect').css('text-align', 'center');
+				$('#orgselect').css('margin-top', '10px');
+
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+   
+	});
+}
+
+function onOrgSelectChange(sel)
+{
+
+	$(function() {
+		$.ajax({
+			type: "POST",
+			url: '/selectedadminunittable',
+			data: { name: sel.value },
+			success:function( response ) {
+			var divIn = '#display';
+			var tablename = ""+sel.value+" Unit live parameters";
+			var datax = $.parseJSON(response);
+				setAnyTable(divIn,datax,tablename);
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+}
+
+function setPatientsTable(divIn)
+{
+
+
+	$(function() {
+		$.ajax({
+			type: "POST",
+			url: '/getpatientstable',
+			data: { name: 'n/a'},
+			success:function( response ) {
+			var datax = $.parseJSON(response);
+				setPatientTable(divIn,datax,patientFiles);
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+}
+
+function setUnitsTable(divIn)
+{
+
+		$(function() {
+			$.ajax({
+				type: "POST",
+				url: '/getunitstable',
+				data: { name: 'n/a'},
+				success:function( response ) {
+				var datax = $.parseJSON(response);
+					setUnitTable(divIn,datax);
+				},
+				error: function(error) {
+						console.log(error);
+				}
+			});
+		});
+		
+}
+
+function addToPatientTable(dataIn)
+{
+	$(function() {
+		$.ajax({
+			type: "POST",
+			contentType: 'application/json',
+			url: '/addtopatientstable',
+			data: dataIn,
+			success:function( response ) {
+			var datax = $.parseJSON(response);
+				setPatientTable('#display',datax);
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+}
+
+function editPatientTable(dataIn)
+{
+	$(function() {
+		$.ajax({
+			type: "POST",
+			contentType: 'application/json',
+			url: '/editpatientstable',
+			data: dataIn,
+			success:function( response ) {
+			var datax = $.parseJSON(response);
+				setPatientTable('#display',datax);
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+}
+
+function deletePatientTable(dataIn)
+{
+	$(function() {
+		$.ajax({
+			type: "POST",
+			contentType: 'application/json',
+			url: '/deletepatients',
+			data: dataIn,
+			success:function( response ) {
+			var datax = $.parseJSON(response);
+				setPatientTable('#display',datax);
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+}
+
+function getPatientList()
+{
+	var datax;
+	$(function() {
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: '/getpatientstable',
+			data: { name: 'n/a'},
+			success:function( response ) {
+			datax= $.parseJSON(response);
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+	return datax;
+}
+
+function setPlay(dataIn)
+{
+	var datax;
+	$(function() {
+		$.ajax({
+			type: "POST",
+			url: '/playpressed',
+			contentType: 'application/json',
+			data: dataIn,
+			success:function( response ) {
+			datax= $.parseJSON(response);
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+
+}
+
+function setRecord(dataIn)
+{
+
+	$(function() {
+		$.ajax({
+			type: "POST",
+			url: '/recordpressed',
+			contentType: 'application/json',
+			data: dataIn,
+			success:function( response ) {
+			datax= $.parseJSON(response);
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+
+}
+
+function setStop(dataIn)
+{
+
+	$(function() {
+		$.ajax({
+			type: "POST",
+			url: '/stoppressed',
+			contentType: 'application/json',
+			data: dataIn,
+			success:function( response ) {
+			datax= $.parseJSON(response);
+			setUnitsTable('#display')
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+
+}
+
+function onPatientSelectChange(sel)
+{
+	var mess = [];
+	var $select = $(sel);
+	var $cell = $select.parents('tbody tr');
+	var $firstChild = $cell.find('>:first-child');
+	var unit_id = $cell.attr('id');
+	var js1 = new Object()
+	js1.unit_id = unit_id;
+	js1.pat_id = sel.value;
+	mess.push(js1);
+	var toCloud = JSON.stringify(js1);
+	$firstChild.attr('id',sel.value);// set for future record
+
+	$(function() {
+		$.ajax({
+			type: "POST",
+			url: '/selectedpatientunittable',
+			contentType: 'application/json',
+			data: toCloud,
+			success:function( response ) {
+			var datax = $.parseJSON(response);			
+
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+}
+
+function onFileSelectChange(sel)
+{
+	var chart; // global
+	theme = 'dark-unica';
+	Highcharts.setOptions(theme );
+	$('#display').empty();
+
+	$(function () {
+    $.getJSON('static/jsonFIle.json', function (data) {
+
+
+
+        // Create a timer
+        var start = +new Date();
+
+        // Create the chart
+        $('#display').highcharts('StockChart', {
+            chart: {
+                events: {
+                    load: function () {
+                        this.setTitle(null, {
+                            text: 'Built chart in ' + (new Date() - start) + 'ms'
+                        });
+                    }
+                },
+                zoomType: 'x'
+            },
+
+            rangeSelector: {
+                
+                buttons: [{
+                    type: 'second',
+                    count: 1,
+                    text: '1sec'
+                }, {
+                    type: 'second',
+                    count: 5,
+                    text: '5sec'
+                }, {
+                    type: 'second',
+                    count: 10,
+                    text: '10sec'
+                }, {
+                    type: 'second',
+                    count: 30,
+                    text: '30sec'
+                }, {
+                    type: 'minute',
+                    count: 1,
+                    text: '1min'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+                selected: 4
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Mv'
+                }
+            },
+
+            title: {
+                text: 'ECG RIchard Tapley '
+            },
+
+            subtitle: {
+                text: 'Test Data From Galileo' // dummy text to reserve space for dynamic subtitle
+            },
+
+            series: [{
+                name: 'Time',
+				data:data,
+                pointInterval:11.11,
+                tooltip: {
+                    valueDecimals: 3,
+                    valueSuffix: 'Mv'
+                }
+            }]
+
+        });
+    });
+});
+}
+
+function displayFile(divIn,datax)
+{
+	alert("in fuction "+datax);
+}
+
+
+function isAllocated(idIn)
+{
+
+	var js1 = new Object()
+	js1.unit_id = idIn;
+	var toCloud = JSON.stringify(js1);
+	
+	$(function() {
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: '/ispatientallocated',
+			contentType: 'application/json',
+			data: toCloud,
+			success:function( response ) {
+			datax = $.parseJSON(response);
+
+			},
+			error: function(error) {
+					console.log(error);
+			}
+		});
+	});
+
+	if(datax[0].unit_allocated == 1)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+function repeat(id)
+{
+	myTimer(id);
+}
+
+
+function myTimer(id)
+{ 
+	$(function() {
+	$.ajax({
+		type: "POST",
+		url: '/getunitstable',
+		data: { name: 'n/a'},
+		success:function( response ) {
+			var datax = $.parseJSON(response);
+			for(var i in datax)
+			{
+				if (id == datax[i].unit_id)
+				{
+					$('#gif').empty();
+					out = "<img id = 'anigif' src = ../static/Images/anigif2.gif /><p id ='bpm'>Unit Number "+datax[i].unit_number+"<br/>BPM = "+datax[i].unit_beat+"</p>";
+					$('#gif').append(out);
+				}
+			}
+		},
+		error: function(error) {
+				console.log(error);
+		}
+	});
+}); 
+
+}
+
+
+
+
