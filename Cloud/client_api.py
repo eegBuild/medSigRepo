@@ -1,9 +1,17 @@
 from flask import Flask, render_template, url_for, request, redirect, flash, jsonify, session
-from uuid import uuid1 as get_mac
-from cloud_control import *
-from werkzeug.datastructures import ImmutableMultiDict
+from client_control import (validate_login, login_required, validate_admin_login,
+                            admin_login_required, get_admin_org_table, get_admin_unit_table,
+                            get_org_names,get_admin_unit_select, log_admin, log_user, get_user_level,
+                            check_new_user_vadility, user_admin_login_required, get_org_id, insertNewUser,
+                            get_patients_table, add_to_patients_table,edit_patients_table,
+                            delete_patients, get_units_table, set_play, updateAllocations,isPatientAllocated,
+                            set_record, set_stop, get_patients_files)
+from galileo_control import (updateUnits,setAvgBeat,saveMyFile)
 import datetime
 import mysql.connector
+import json
+import codecs
+
 
 sqlconfig = {
   'user': 'c00162379pb',
@@ -12,139 +20,287 @@ sqlconfig = {
   'database': 'c00162379pb$medsig162379rt',
   'raise_on_warnings': True,
 }
+reader = codecs.getreader('utf-8')
 
 app = Flask(__name__)
+app.secret_key = 'thisis$%#!@mysecretkeywhichyouwillneverguessha$%#!@'
 
-unit = "No Units Online"
-unitNum = "n/a"
 
 @app.route('/')
-def display_home():
-    session['ip'] = request.environ['REMOTE_ADDR']
-    session['online'] = "No Units Online"
-    return render_template("index.html",
-                            the_title="Galileo Test",
-                            galileo_url=url_for("call_galileo"),
-                            ip_url=url_for("get_my_ip"),
-			    the_ip = session.get('ip', 'unknown'),
-                            the_name = "Dr John Watson",
-                            the_gap = ". ",
-                            the_online_unit = session.get('online', 'No Online Units'),
-                            the_unitNum = unitNum ,)
+@app.route('/login',methods=['GET'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html',
+                               message = """<p><h2>Enter Username and Password below</h2></p>""")
+    return redirect(url_for('index'))
 
-@app.route('/live_chart')
-def call_live_chart():
-        return render_template("livechart.html",
-                            the_title="Galileo Test",
-                            galileo_url=url_for("call_galileo"),
-                            ip_url=url_for("get_my_ip"),
-			    the_ip = session.get('ip', 'unknown'),
-                            the_name = "Dr John Watson",
-                            the_gap = ". ",
-                            the_online_unit = session.get('online', 'No Online Units'),)
+@app.route('/adminlogin',methods=['GET'])
+def admin_login():
+    if request.method == 'GET':
+        return render_template('adminlogin.html',
+                               message = """<p><h2>Enter Username and Password below</h2></p>""")
+    return redirect(url_for('index'))
 
-@app.route('/file_chart')
-def call_file_chart():
-        return render_template("chart.html",
-                            the_title="Galileo Test",
-                            galileo_url=url_for("call_galileo"),
-                            ip_url=url_for("get_my_ip"),
-			    the_ip = session.get('ip', 'unknown'),
-                            the_name = "Dr John Watson",
-                            the_gap = ". ",
-                            the_online_unit = session.get('online', 'No Online Units'),)
+@app.route('/processlogin',methods=['GET','POST'])
+def process_login():
 
-@app.route('/xxxxxx',methods=["GET"])
-def call_galileo():
+    if request.method == 'GET':
+        if 's_username' not in session:
+            return render_template('login.html',
+                               message =  """<p><h2>Enter Username and Password below</h2></p>""")
+        else:
+            return render_template("useradminbase.html",
+                                       the_title="Home Page",
+                                       the_name = "Admin %s" %(session['s_username']))
+    if request.method == 'POST':
+        username = request.form['user']
+        password = request.form['pass']
+        if(validate_login(username, password)):
+            session['s_username'] = username
+            session['s_password'] = password
+            session['s_orgId'] = get_org_id(username)
+            log_user(username)
+            level = get_user_level(username)
+            if level == 2:
+                return render_template("useradminbase.html",
+                                       the_title="Home Page",
+                                       the_name = "Admin %s" %(session['s_username']),
+                                       new_user_message = "Add user personal email and Password.")
+            if level == 3:
+                return render_template("userbase.html",
+                                       the_title="Home Page",
+                                       the_name = session['s_username'],)
+                                       #the_name = level,)
+        else:
+            return render_template('login.html',
+                            message = """<p><h2 style = 'color:red;'>Username and Password
+                                       incorrect &nbsp;&nbsp;&nbsp;Enter details again</h2></p>""")
+
+@app.route('/processadminlogin',methods=['GET','POST'])
+def process_admin_login():
+
+    if request.method == 'GET':
+        return render_template('adminlogin.html',
+                               message =  """<p><h2>Enter Username and Password below</h2></p>""")
+    if request.method == 'POST':
+        username = request.form['user']
+        password = request.form['pass']
+        if(validate_admin_login(username, password)):
+            session['s_username'] = username
+            session['s_password'] = password
+            log_admin(username)
+            return render_template("adminbase.html",
+                                   the_title="Home Page",
+                                   the_name = session['s_username'])
+        else:
+            return render_template('adminlogin.html',
+                            message = """<p><h2 style = 'color:red;'>Username and Password
+                                       incorrect &nbsp;&nbsp;&nbsp;Enter details again</h2></p>""")
+            
+            
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    session.pop('s_username', None)
+    session.pop('s_password', None)
+    return redirect(url_for('login'))
+
+@app.route('/add_new_user',methods=['GET','POST'])
+@user_admin_login_required
+def add_new_user():
+    if request.method == 'GET':
+        return render_template('addnewuser.html',
+                               message =  """Add user Personal email and Password.""",
+                               the_name = session['s_username'])
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['pass']
+        name = request.form['name']
+        org_id = get_org_id(str(session['s_username']))
+        result = check_new_user_vadility(email,password)
+        if result == 'x':
+            insertNewUser(email,name, password, org_id)
+            return render_template("adminbase.html",
+                                   the_title="Home Page",
+                                   the_name = session['s_username'])
+        else:
+            return render_template('addnewuser.html',
+                               message =  result,
+                               the_name = session['s_username'])
+            
+
+
+@app.route('/adminhome')
+@admin_login_required
+def admin_home():
+    return render_template("adminbase.html",
+                           the_title="Home",
+                           the_name = session['s_username'])
+
+@app.route('/adminorgtable',methods=['POST'])
+@admin_login_required
+def get_org_table():
+    if request.method == 'POST':
+        data = json.dumps(get_admin_org_table())
+        return data
+
+@app.route('/adminsigtable',methods=['POST'])
+@admin_login_required
+def get_sig_table():
+    if request.method == 'POST':
+        data = json.dumps(get_admin_unit_table())
+        return data
+
+@app.route('/organisationselect',methods=['POST'])
+@admin_login_required
+def get_org_select():
+    if request.method == 'POST':
+        data = json.dumps(get_org_names())
+        return data
+
+@app.route('/selectedadminunittable',methods=['POST'])
+@admin_login_required
+def get_admin_unit_selected():
+    if request.method == 'POST':
+        org_name = request.form['name']
+        args =[org_name]
+        data = json.dumps(get_admin_unit_select(args))
+        return data
     
+@app.route('/getpatientfiles',methods=['POST'])
+@login_required
+def get_patient_file():
+    org_id = get_org_id(str(session['s_username']))
+    if request.method == 'POST':
+        data = json.dumps(get_patients_files())
+        return data
 
-        return render_template("index.html",
-                            the_title="Galileo Test",
-                            galileo_url=url_for("call_galileo"),
-                            ip_url=url_for("get_my_ip"),
-			    the_ip = session.get('ip', 'unknown'),
-                            the_name = "Dr John Watson",
-                            the_gap = ". ",
-                            the_online_unit = session.get('online', 'No Online Units'),)
+@app.route('/getpatientstable',methods=['POST'])
+@login_required
+def get_patient_table():
+    org_id = get_org_id(str(session['s_username']))
+    if request.method == 'POST':
+        data = json.dumps(get_patients_table(org_id))
+        return data
 
-@app.route("/get_my_ip", methods=["POST","GET"])
-def get_my_ip():
-    ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-    return '{"ip": "'+ip+'"}'
+@app.route('/addtopatientstable', methods =['POST'])
+@login_required
+def add_to_patient_table():
+    org_id = get_org_id(str(session['s_username']))
+    if request.method == 'POST':
+        fname = request.json['first_name']
+        lname = request.json['last_name']
+        ref = request.json['reference']
+        data = json.dumps(add_to_patients_table(fname,lname,ref,org_id))
+        return data
 
-@app.route("/get_my_unit", methods=["POST","GET"])
-def get_my_unit():
-    with open('comments.log') as log:
-        line = log.readline()[3:10]
-    return '{"unit": "'+line+'"}'
+@app.route('/editpatientstable', methods =['POST'])
+@login_required
+def edit_patient_table():
+    org_id = get_org_id(str(session['s_username']))
+    if request.method == 'POST':
+        fname = request.json['first_name']
+        lname = request.json['last_name']
+        ref = request.json['reference']
+        the_id = request.json['id']
+        data = json.dumps(edit_patients_table(fname,lname,ref,the_id,org_id))
+        return data
 
-@app.route("/send_info", methods=["POST"])
-def send_info():
-    d = request.data
-    writeFile(d)
+@app.route('/deletepatients', methods =['POST'])
+@login_required
+def delete_patient():
+    org_id = get_org_id(str(session['s_username']))
+    if request.method == 'POST':
+        the_id = request.json['id']
+        data = json.dumps(delete_patients(the_id,org_id))
+        return data
+
+@app.route('/getunitstable',methods=['POST'])
+@login_required
+def get_unit_table():
+    org_id = get_org_id(str(session['s_username']))
+    if request.method == 'POST':
+        data = json.dumps(get_units_table(org_id))
+        return data
+
     
+@app.route('/playpressed',methods=['POST'])
+@login_required
+def play_pressed():
+    if request.method == 'POST':
+        the_id = request.json['id']
+        data = json.dumps(set_play(the_id))
+        return data
+  
 
-    return render_template("index.html",
-                            the_title="Galileo Test",
-                            galileo_url=url_for("call_galileo"),
-                            ip_url=url_for("get_my_ip"),
-			    the_ip = session.get('ip', 'unknown'),
-                            the_name = "Dr John Watson",
-                            the_gap = ". ",
-                            the_online_unit = session.get('online', 'No Online Units again'),
-                            the_unit = unit,
-                            the_unitNum = unitNum ,)
+@app.route('/recordpressed',methods=['POST'])
+@login_required
+def record_pressed():
+        if request.method == 'POST':
+            the_id = request.json['id']
+            data = json.dumps(set_record(the_id))
+            return data
+
+@app.route('/stoppressed',methods=['POST'])
+@login_required
+def stop_pressed():
+        if request.method == 'POST':
+            the_id = request.json['id']
+            data = json.dumps(set_stop(the_id))
+            return data
 
 
-@app.route("/call_from_galileo", methods=["POST"])
-def return_hello():
-    ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-    return '{"ip": "'+ip+'"}'
 
-def writeFile(x):
-    #jsonf = json.loads(x)
-    with open('comments.log', 'w') as log:
-        print(x, file=log)
-		
-		
-@app.route('/sql_test')
-def sql_test():
-    cnx = mysql.connector.connect(**sqlconfig)
-    cursor = cnx.cursor()
+@app.route('/selectedpatientunittable',methods=['POST'])
+@login_required
+def get_patient_unit_selected():
+    if request.method == 'POST':
+        unit_id = request.json['unit_id']
+        pat_id = request.json['pat_id']
+        args =[unit_id,pat_id]
+        data = json.dumps(updateAllocations(args))
+        return data
 
-    query = ("SELECT unit_id, unit_number FROM unit")
 
-    cursor.execute(query)
+@app.route('/ispatientallocated',methods=['POST'])
+@login_required
+def is_patient_allocated():
+    if request.method == 'POST':
+        unit_id = request.json['unit_id']
+        data = json.dumps(isPatientAllocated(unit_id))
+        return data
 
-    for (unit_id,unit_number) in cursor:
-        the_data = cursor.fetchall()
+## **************** Galileo calls ************************
 
-    cursor.close()
-    cnx.close()
-    return render_template('sql.html',
-                           rows = the_data,)
-        
-@app.route('/unit_hello', methods = ['POST','GET'])
+@app.route('/unit_hello', methods = ['GET'])
 def logUnit():
     #print(request)
-    out = str(request.data)
-    out = out.replace("b","")
-    cnx = mysql.connector.connect(**sqlconfig)
-    cursor = cnx.cursor()
-    args = [out]
-    args_sel = [out,0]
-    result_sel = cursor.callproc('getUnitIdFromUnitNumber',args_sel)
-    args = [result_sel[1]]
-    result_args = cursor.callproc('setUnitOnline',args)
+    mac = request.args.get('mac')
+    return jsonify(updateUnits(mac))
 
-    cnx.commit()
-    cursor.close()
-    cnx.close()
+@app.route('/unit_livebeat', methods = ['GET'])
+def unitBeat():
+    #print(request)
+    mac = request.args.get('mac')
+    beat = request.args.get('beat')
+    setAvgBeat(mac,beat)
+
+@app.route('/save_file', methods = ['GET'])
+def saveFile():
+    #print(request)
+    file_in = request.args.get('datajson')
+    saveMyFile(file_in)
+
+## ********************************************************
+
+@app.route('/live_chart')
+@login_required
+def call_live_chart():
+    return render_template("base.html",
+                           the_title="Galileo Test",
+                           the_name = session['s_username'])
 
 
-
-
-app.config['SECRET_KEY'] = 'thisismysecretkeywhichyouwillneverguesshahahahahahahaha'
 
 if __name__ == "__main__":
 
