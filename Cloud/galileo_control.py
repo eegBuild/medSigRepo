@@ -1,20 +1,14 @@
 from flask import Flask, render_template, url_for, request,redirect, flash, jsonify, session
 import mysql.connector
-##sqlconfig = {
-##  'user': 'c00162379pb',
-##  'password': 'x',
-##  'host': 'mysql.server',
-##  'database': 'c00162379pb$medsig162379rt',
-##  'raise_on_warnings': True,
-##}
-
 sqlconfig = {
-  'user': 'root',
-  'password': '',
-  'host': 'localhost',
+  'user': 'c00162379pb',
+  'password': 'x',
+ 'host': 'mysql.server',
   'database': 'c00162379pb$medsig162379rt',
   'raise_on_warnings': True,
 }
+
+
 mydict = {}
 
 ## **************** Galileo calls ***********************

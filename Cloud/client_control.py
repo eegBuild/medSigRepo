@@ -5,21 +5,15 @@ from functools import wraps
 from flask import render_template, url_for, request, redirect, flash, jsonify, session
 import re
 
-##sqlconfig = {
-##  'user': 'c00162379pb',
-##  'password': 'x',
-##  'host': 'mysql.server',
-##  'database': 'c00162379pb$medsig162379rt',
-##  'raise_on_warnings': True,
-##}
-
 sqlconfig = {
-  'user': 'root',
-  'password': '',
-  'host': '127.0.0.1',
+  'user': 'c00162379pb',
+  'password': 'x',
+  'host': 'mysql.server',
   'database': 'c00162379pb$medsig162379rt',
   'raise_on_warnings': True,
 }
+
+
 
 def login_required(f):
     @wraps(f)
