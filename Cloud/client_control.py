@@ -46,7 +46,7 @@ def admin_login_required(f):
     return decorated_function
 
 def validate_login(user, password):
-    password_bytes = bytes(password, "ascii")
+    password_bytes = password
     cnx = mysql.connector.connect(**sqlconfig)
     cursor = cnx.cursor()
     args_sel = [user,0,1]
@@ -57,7 +57,7 @@ def validate_login(user, password):
         return False
       else:
         raise
-    if bcrypt.hashpw(password_bytes, result_sel[1]) == result_sel[1]:
+    if bcrypt.hashpw(password_bytes, result_sel[1]) == bytes.decode(result_sel[1]):
         session['s_level'] = result_sel[2]
         return True
     else:
@@ -98,7 +98,7 @@ def get_user_level(name):
     
 
 def validate_admin_login(user, password):
-    password_bytes = bytes(password, "ascii")
+    password_bytes = password
     cnx = mysql.connector.connect(**sqlconfig)
     cursor = cnx.cursor()
     args_sel = [user,0]
@@ -109,7 +109,7 @@ def validate_admin_login(user, password):
         return False
       else:
         raise
-    if bcrypt.hashpw(password_bytes, result_sel[1]) == result_sel[1]:
+    if bcrypt.hashpw(password_bytes, result_sel[1]) == bytes.decode(result_sel[1]):
         return True
     else:
         return False
