@@ -106,7 +106,7 @@ function tableFormWork(table, pos)
 	head.find('thead tr').not('.seperator').append($('<th class="edit"><span class="validate">Options</span></th>'));
 	table.find('thead tr').not('.seperator').append($('<th class="edit">3 </th>'));
 	table.find('thead tr').not('.seperator').append($('<th class="edit">4 </th>'));
-    table.find('tbody tr:first').not('.seperator').append($('<td class="edit"><img id = "add" class = "btnE" src="../static/Images/addGreen.png" data = "true"/><img class = "btnV"  src="../static/Images/empty.png" /></td>'));
+    table.find('tbody tr:first').not('.seperator').append($('<td class="edit"><img id = "add" class = "btnA" src="../static/Images/addGreen.png" data = "true"/><img class = "btnV"  src="../static/Images/empty.png" /></td>'));
 	table.find('tbody tr').not('tbody tr:first').not('.seperator').append($('<td class="edit"><img id = "edit" class = "btnE"   src="../static/Images/editGreen60.png" data = "true"/><img class = "btnD"  src="../static/Images/deleteRed.png" /></td>'));
 	table.find('tr.seperator').append($('<th class="seperator" style=" background-color:#006699; border-color:#006699;"></th>'));
 
@@ -128,7 +128,7 @@ function tableFormWork(table, pos)
 		
   });
 
-  $(table).find('.btnA').on('click', function(e) 
+  $(table).find('.btnA').one('click', function(e) 
   {
 		var $button = $(this);
 		var $row = $button.parents('tbody tr');
