@@ -128,7 +128,7 @@ function tableFormWork(table, pos)
 		
   });
 
-  $(table).find('.btnA').one('click', function(e) 
+  $(table).find('.btnA').on('click', function(e) 
   {
 		var $button = $(this);
 		var $row = $button.parents('tbody tr');
