@@ -134,49 +134,20 @@ function tableFormWork(table, pos)
 		e.preventDefault();
   });
   
-  $(table).find('.edit .btnEtoSave').live('click', function(e) 
+  $(table).find('.btnEtoSave').live('click', function(e) 
 	{
 		var input = [];
 		var mess = [];
 		var $button = $(this);
 		var $row = $button.parents('tbody tr');
-		var $cells = $row.children('td.wrap').not('.edit');
-		tableEditable(this);
-		
-		if( $(this).attr('id') == 'add')
-		{
-			
-			$cells.each(function () {
-				var cell = $(this);
-				input.push(cell.text());
-
-			})
-			
-			js1 = new Object()
-			js1.reference = input[0];
-			js1.first_name = input[1];
-			js1.last_name = input[2];
-			mess.push(js1);
-			var toCloud = JSON.stringify(js1);
-			var r = confirm("Do you want to add "+input[1]+" "+input[2]+"to the patients file.?");
-			if (r == true) 
-			{		
-				addToPatientTable(toCloud);
-
-			}
-			else
-			{
-				
-			}	
-			
-		}
+		var $cells = $row.children('td.wrap')
+		//tableEditable(this);
 		
 		if( $(this).attr('id') == 'edit')
 		{
 			 
 			$cells.each(function () {
-				var cell = $(this);
-				input.push(cell.text());
+				input.push($(this).find('input').val());
 
 			})
 			input.push($row.attr('id'));
@@ -188,7 +159,7 @@ function tableFormWork(table, pos)
 			js1.id = input[3];
 			mess.push(js1);
 			var toCloud = JSON.stringify(js1);
-			var r = confirm("Do you want to edit "+input[1]+" "+input[2]+"in the patients file.?");
+			var r = confirm("Do you want to edit "+input[1]+" "+input[2]+" in the patients file.?");
 			if (r == true) 
 			{	
 
@@ -196,18 +167,42 @@ function tableFormWork(table, pos)
 			}
 			else
 			{
-				
+				setPatientsTable('#display')
+			}	
+			
+		}
+		
+		if( $(this).attr('id') == 'add')
+		{
+			
+			$cells.each(function () {
+				input.push($(this).find('input').val());
+
+			})
+			input.push($row.attr('id'));
+			
+			js1 = new Object()
+			js1.reference = input[0];
+			js1.first_name = input[1];
+			js1.last_name = input[2];
+			mess.push(js1);
+			var toCloud = JSON.stringify(js1);
+			var r = confirm("Do you want to add "+input[1]+" "+input[2]+" to the patients file.?");
+			if (r == true) 
+			{		
+				addToPatientTable(toCloud);
+
+			}
+			else
+			{
+				setPatientsTable('#display')
 			}	
 			
 		}
 		e.preventDefault();
 	});
   
-  $(table).find('.edit .btnEsaved').live('click', function(e) 
-	{
-		tableEditable(this);
-		e.preventDefault();
-	});
+
   
   $(table).find('.edit .btnV').live('click', function(e) 
 	{
@@ -1025,6 +1020,7 @@ function setRecord(dataIn)
 			data: dataIn,
 			success:function( response ) {
 			datax= $.parseJSON(response);
+			setUnitsTable('#display')
 			},
 			error: function(error) {
 					console.log(error);
