@@ -917,6 +917,7 @@ function addToPatientTable(dataIn)
 	$(function() {
 		$.ajax({
 			type: "POST",
+			async: false,
 			contentType: 'application/json',
 			url: '/addtopatientstable',
 			data: dataIn,
@@ -936,6 +937,7 @@ function editPatientTable(dataIn)
 	$(function() {
 		$.ajax({
 			type: "POST",
+			async: false,
 			contentType: 'application/json',
 			url: '/editpatientstable',
 			data: dataIn,
@@ -955,6 +957,7 @@ function deletePatientTable(dataIn)
 	$(function() {
 		$.ajax({
 			type: "POST",
+			async: false,
 			contentType: 'application/json',
 			url: '/deletepatients',
 			data: dataIn,
