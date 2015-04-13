@@ -128,20 +128,99 @@ function tableFormWork(table, pos)
 		
   });
 
-  $(table).find('.edit .btnE').live('click', function(e) 
+  $(table).find('.btnA').one('click', function(e) 
   {
-		tableEditable(this);
-		e.preventDefault();
-  });
-  
-  $(table).find('.btnEtoSave').live('click', function(e) 
+		var $button = $(this);
+		var $row = $button.parents('tbody tr');
+		var $cells = $row.children('td.wrap').not('.edit');
+		var $nonEditCell = $row.children('td').not('td.wrap, .edit');
+		$button.attr('class','btnAtoSave');
+		
+		$cells.each(function()
+		{
+		  var cell = $(this);
+		  cell.data('text', cell.html()).html('');
+		  
+		  var $input = $('<input type="text" />')
+			.val(cell.data(''))
+			.css({'direction':'ltr','font-size': '11px','font-weight': 'normal'})
+			.width(cell.width() - 16);
+			cell.append($input);
+		 })
+		 $row.data('flag', true);
+		 
+	$(table).find('.btnAtoSave').one('click', function(e) 
 	{
 		var input = [];
 		var mess = [];
 		var $button = $(this);
 		var $row = $button.parents('tbody tr');
 		var $cells = $row.children('td.wrap')
-		tableEditable(this);
+		
+		
+		if( $(this).attr('id') == 'add')
+		{
+			
+			$cells.each(function () {
+				input.push($(this).find('input').val());
+
+			})
+			input.push($row.attr('id'));
+			
+			js1 = new Object()
+			js1.reference = input[0];
+			js1.first_name = input[1];
+			js1.last_name = input[2];
+			mess.push(js1);
+			var toCloud = JSON.stringify(js1);
+			var r = confirm("Do you want to add "+input[1]+" "+input[2]+" to the patients file.?");
+			if (r == true) 
+			{		
+				addToPatientTable(toCloud);
+
+			}
+			else
+			{
+				setPatientsTable('#display')
+			}	
+			
+		}
+	});
+		 
+		e.preventDefault();
+  });
+  
+  $(table).find('.btnE').one('click', function(e) 
+  {
+		var $button = $(this);
+		var $row = $button.parents('tbody tr');
+		var $cells = $row.children('td.wrap').not('.edit');
+		var $nonEditCell = $row.children('td').not('td.wrap, .edit');
+		$button.attr('class','btnEtoSave');
+		
+		$cells.each(function()
+		{
+		  var cell = $(this);
+		  var intext = $(this).html();
+		  cell.data('text', cell.html()).html('');
+		  
+		  var $input = $('<input type="text" />')
+			.val(intext)
+			.css({'direction':'ltr','font-size': '11px','font-weight': 'normal'})
+			.width(cell.width() - 16);
+			cell.append($input);
+		 })
+		
+		$row.data('flag', true);
+		
+	$(table).find('.btnEtoSave').one('click', function(e) 
+	{
+		var input = [];
+		var mess = [];
+		var $button = $(this);
+		var $row = $button.parents('tbody tr');
+		var $cells = $row.children('td.wrap')
+		$button.attr('class','btnE');
 		
 		if( $(this).attr('id') == 'edit')
 		{
@@ -171,56 +250,20 @@ function tableFormWork(table, pos)
 			}	
 			
 		}
-		
-		if( $(this).attr('id') == 'add')
-		{
-			
-			$cells.each(function () {
-				input.push($(this).find('input').val());
-
-			})
-			input.push($row.attr('id'));
-			
-			js1 = new Object()
-			js1.reference = input[0];
-			js1.first_name = input[1];
-			js1.last_name = input[2];
-			mess.push(js1);
-			var toCloud = JSON.stringify(js1);
-			var r = confirm("Do you want to add "+input[1]+" "+input[2]+" to the patients file.?");
-			if (r == true) 
-			{		
-				addToPatientTable(toCloud);
-
-			}
-			else
-			{
-				setPatientsTable('#display')
-			}	
-			
-		}
-		e.preventDefault();
 	});
   
+});
+	
+	
+	
 
-  
-  $(table).find('.edit .btnV').live('click', function(e) 
-	{
-		tableVerify(this);
-		e.preventDefault();
-  });
-	$(table).find('.edit .btnVx').live('click', function(e) 
-	{
-		tableVerify(this);
-		e.preventDefault();
-  });
-    $(table).find('.edit .btnD').live('click', function(e) 
+    $(table).find('.edit .btnD').on('click', function(e) 
 	{
 		var input = [];
 		var mess = [];
 		var $button = $(this);
 		var $row = $button.parents('tbody tr');
-		var rowClass = $row.attr('class'); 
+		var rowClass = $row.attr('class');	
 		$row .addClass('allRed');
 
 		input.push($row.attr('id'));
@@ -239,27 +282,7 @@ function tableFormWork(table, pos)
 			{
 				$row .removeClass('allRed');
 			}
-		e.preventDefault();
-  });
-  
-	$(table).find('.edit .btnDx').live('click', function(e) 
-	{
-		tableVerify(this);
-		e.preventDefault();
-  });
-  
-  $('.verifyCheck').change(function(e) 
-  {
-  
-    if(this.checked)
-	{
-		tableVerifyAll(table);
-	}
-	else
-	{
-		tableVerifyNone(table);
-	}
-    e.preventDefault();
+		
   });
   
   $(table).css('overflow-y', 'scroll');
