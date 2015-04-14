@@ -16,17 +16,26 @@
 	
 	<script type ="text/javascript">
 	$(document).ready(function(){ // When the DOM is Ready, then bind the click
+	$("#video").hide();
+	
     $("#patient").click(function(){
-		
+		$("#video").hide();
 		setPatientsTable("#display");
     });
 	    $("#signalunits").click(function(){
-
+		$("#video").hide();
 		setUnitsTable("#display");
     });
+	
+	$("#help").click(function(){
+		$("#display").empty();
+		$("#video").show();
+    });
+	
 	$("#home").click(function(){
 		$("#display").empty();
     });
+	
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 });
@@ -64,14 +73,16 @@
 		<div id="display">
 		</div>
 		
-
+		<div id="video">
+		<iframe width="1240" height="590" src="https://www.youtube.com/embed/_94WClXWCQo" frameborder="0" allowfullscreen></iframe>
+		<div>
 		{% block the_body %}
         {% endblock %}
 		
 		{% block the_chart %}
 		{% endblock%}
 	
-		
+
 		
 		<footer>
 			<div class="content-wrapper">
