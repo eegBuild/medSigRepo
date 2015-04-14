@@ -1179,7 +1179,7 @@ function onFileSelectChange(sel)
             series: [{
                 name: 'Time',
 				data:data,
-                pointInterval:5.1,
+                pointInterval:4.8,
                 tooltip: {
                     valueDecimals: 3,
                     valueSuffix: 'Mv'
